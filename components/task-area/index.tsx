@@ -2,6 +2,11 @@ import { IoCloseSharp } from 'react-icons/io5';
 import { Button } from '../ui/button';
 import { Card, CardContent, CardFooter, CardHeader } from '../ui/card';
 import { SearchInput } from './search-input';
+import {
+  PriorityDropDown,
+  StatusDropDown,
+  ViewColumnsDropdown,
+} from '../drop-downs';
 
 export const TasksArea = () => {
   return (
@@ -11,16 +16,17 @@ export const TasksArea = () => {
           <div className='flex items-center justify-between'>
             <div className='flex items-center gap-2'>
               <SearchInput />
-              {/* STATUS DROPDOWN */}
-              {/* PRIORITY DROPDOWN */}
 
-              {/* <div className='grow' /> */}
+              <StatusDropDown />
+              <PriorityDropDown />
 
               <Button variant={'ghost'} className='h-10'>
                 <span>Reset</span>
                 <IoCloseSharp />
               </Button>
             </div>
+
+            <ViewColumnsDropdown />
           </div>
         </CardHeader>
 
