@@ -1,5 +1,6 @@
 import { NavBar } from '@/components/nav-bar';
 import { StatCards } from '@/components/stats-cards';
+import { TasksArea } from '@/components/task-area';
 
 export default function Home() {
   return (
@@ -7,6 +8,8 @@ export default function Home() {
       <NavBar />
 
       <StatCards />
+
+      <TasksArea />
     </div>
   );
 }
