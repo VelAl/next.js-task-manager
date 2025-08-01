@@ -23,7 +23,7 @@ export const NavBar = () => {
   return (
     <header
       className={`poppins relative w-full h-[92px] overflow-hidden flex justify-between 
-                  items-center px-6 border-b bg-accent`}
+                  items-center px-6 border-b bg-muted-foreground`}
     >
       <AppNameLogo />
 
