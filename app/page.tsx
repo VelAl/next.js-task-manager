@@ -1,8 +1,9 @@
-import { ThemeModeToggle } from "@/components/theme-mode-toggle";
+import { NavBar } from "@/components/nav-bar";
 
 export default function Home() {
-  return <div className='poppins'>here
-  
-    <ThemeModeToggle />
-  </div>;
+  return (
+    <div className='poppins'>
+      <NavBar />
+    </div>
+  );
 }
