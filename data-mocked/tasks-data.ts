@@ -12,7 +12,7 @@ export interface T_Task {
   title: string;
 }
 
-const tasks: T_Task[] = [
+export const tasks: T_Task[] = [
   {
     taskId: '1',
     title: 'Fix login issue',
