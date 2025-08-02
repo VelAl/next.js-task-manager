@@ -7,6 +7,7 @@ import {
   StatusDropDown,
   ViewColumnsDropdown,
 } from '../drop-downs';
+import { PaginationArea } from './pagination';
 
 export const TasksArea = () => {
   return (
@@ -30,9 +31,13 @@ export const TasksArea = () => {
           </div>
         </CardHeader>
 
-        <CardContent>{/* TABLE */}</CardContent>
+        <CardContent>
+          
+        </CardContent>
 
-        <CardFooter> {/* PAGINATION */}</CardFooter>
+        <CardFooter> 
+          <PaginationArea />
+        </CardFooter>
       </Card>
     </div>
   );
