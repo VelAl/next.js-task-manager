@@ -156,7 +156,7 @@ export const tasksColumns: ColumnDef<T_Task>[] = [
     accessorKey: 'status',
     header: "Status",
     cell: ({ row }) => {
-      const status = row.original.status;
+      const status = row.getValue('status') as keyof typeof statusIcns;
       const Icon = statusIcns[status];
 
       return (
@@ -173,7 +173,7 @@ export const tasksColumns: ColumnDef<T_Task>[] = [
     header: "Priority",
 
     cell: ({ row }) => {
-      const priority = row.original.priority;
+      const priority = row.original.priority as keyof typeof priorityIcns;
       const Icon = priorityIcns[priority];
 
       return (

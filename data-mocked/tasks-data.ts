@@ -4,7 +4,7 @@ export const tasks: T_Task[] = [
   {
     taskId: '1',
     title: 'Fix login issue',
-    label: 'Bug',
+    type: 'Bug',
     createdAt: '2023-07-15T08:30:00Z',
     priority: 'High',
     status: 'In Progress',
@@ -13,7 +13,7 @@ export const tasks: T_Task[] = [
   {
     taskId: '2',
     title: 'Add search functionality',
-    label: 'Feature',
+    type: 'Feature',
     createdAt: '2023-07-20T09:45:00Z',
     priority: 'Medium',
     status: 'To Do',
@@ -22,7 +22,7 @@ export const tasks: T_Task[] = [
   {
     taskId: '3',
     title: 'Update API documentation',
-    label: 'Documentation',
+    type: 'Documentation',
     createdAt: '2023-07-25T12:00:00Z',
     priority: 'Low',
     status: 'Done',
@@ -31,7 +31,7 @@ export const tasks: T_Task[] = [
   {
     taskId: '4',
     title: 'Improve performance on mobile',
-    label: 'Feature',
+    type: 'Feature',
     createdAt: '2023-07-29T14:20:00Z',
     priority: 'High',
     status: 'Backlog',
@@ -40,7 +40,7 @@ export const tasks: T_Task[] = [
   {
     taskId: '5',
     title: 'Fix bug in payment gateway',
-    label: 'Bug',
+    type: 'Bug',
     createdAt: '2023-08-01T10:30:00Z',
     priority: 'High',
     status: 'To Do',
@@ -49,7 +49,7 @@ export const tasks: T_Task[] = [
   {
     taskId: '6',
     title: 'Refactor codebase',
-    label: 'Feature',
+    type: 'Feature',
     createdAt: '2023-08-02T11:15:00Z',
     priority: 'Medium',
     status: 'In Progress',
@@ -58,7 +58,7 @@ export const tasks: T_Task[] = [
   {
     taskId: '7',
     title: 'Update terms of service',
-    label: 'Documentation',
+    type: 'Documentation',
     createdAt: '2023-08-05T16:40:00Z',
     priority: 'Low',
     status: 'To Do',
@@ -67,7 +67,7 @@ export const tasks: T_Task[] = [
   {
     taskId: '8',
     title: 'Fix broken links on homepage',
-    label: 'Bug',
+    type: 'Bug',
     createdAt: '2023-08-06T07:55:00Z',
     priority: 'Medium',
     status: 'Done',
@@ -76,7 +76,7 @@ export const tasks: T_Task[] = [
   {
     taskId: '9',
     title: 'Add user authentication',
-    label: 'Feature',
+    type: 'Feature',
     createdAt: '2023-08-10T13:05:00Z',
     priority: 'High',
     status: 'Backlog',
@@ -85,7 +85,7 @@ export const tasks: T_Task[] = [
   {
     taskId: '10',
     title: 'Update privacy policy',
-    label: 'Documentation',
+    type: 'Documentation',
     createdAt: '2023-08-12T08:25:00Z',
     priority: 'Low',
     status: 'In Progress',
@@ -94,7 +94,7 @@ export const tasks: T_Task[] = [
   {
     taskId: '11',
     title: 'Integrate third-party API',
-    label: 'Feature',
+    type: 'Feature',
     createdAt: '2023-08-15T12:40:00Z',
     priority: 'High',
     status: 'To Do',
@@ -103,7 +103,7 @@ export const tasks: T_Task[] = [
   {
     taskId: '12',
     title: 'Fix CSS issues on mobile',
-    label: 'Bug',
+    type: 'Bug',
     createdAt: '2023-08-17T09:10:00Z',
     priority: 'Medium',
     status: 'In Progress',
@@ -112,7 +112,7 @@ export const tasks: T_Task[] = [
   {
     taskId: '13',
     title: 'Review pull requests',
-    label: 'Feature',
+    type: 'Feature',
     createdAt: '2023-08-18T15:50:00Z',
     priority: 'Medium',
     status: 'To Do',
@@ -121,7 +121,7 @@ export const tasks: T_Task[] = [
   {
     taskId: '14',
     title: 'Write unit tests for authentication',
-    label: 'Feature',
+    type: 'Feature',
     createdAt: '2023-08-19T14:30:00Z',
     priority: 'High',
     status: 'Done',
@@ -130,7 +130,7 @@ export const tasks: T_Task[] = [
   {
     taskId: '15',
     title: 'Improve UI/UX for dashboard',
-    label: 'Feature',
+    type: 'Feature',
     createdAt: '2023-08-20T10:00:00Z',
     priority: 'High',
     status: 'In Progress',
@@ -139,7 +139,7 @@ export const tasks: T_Task[] = [
   {
     taskId: '16',
     title: 'Optimize database queries',
-    label: 'Feature',
+    type: 'Feature',
     createdAt: '2023-08-23T11:50:00Z',
     priority: 'Medium',
     status: 'Backlog',
@@ -148,7 +148,7 @@ export const tasks: T_Task[] = [
   {
     taskId: '17',
     title: 'Fix issue with image uploads',
-    label: 'Bug',
+    type: 'Bug',
     createdAt: '2023-08-25T08:10:00Z',
     priority: 'Medium',
     status: 'Done',
@@ -157,7 +157,7 @@ export const tasks: T_Task[] = [
   {
     taskId: '18',
     title: 'Write release notes for v2.1',
-    label: 'Documentation',
+    type: 'Documentation',
     createdAt: '2023-08-26T16:30:00Z',
     priority: 'Low',
     status: 'To Do',
@@ -166,7 +166,7 @@ export const tasks: T_Task[] = [
   {
     taskId: '19',
     title: 'Add localization support',
-    label: 'Feature',
+    type: 'Feature',
     createdAt: '2023-08-30T09:00:00Z',
     priority: 'High',
     status: 'Backlog',
@@ -175,7 +175,7 @@ export const tasks: T_Task[] = [
   {
     taskId: '20',
     title: 'Fix issue with email notifications',
-    label: 'Bug',
+    type: 'Bug',
     createdAt: '2023-09-02T10:35:00Z',
     priority: 'High',
     status: 'To Do',
@@ -184,7 +184,7 @@ export const tasks: T_Task[] = [
   {
     taskId: '21',
     title: 'Update dependency versions',
-    label: 'Feature',
+    type: 'Feature',
     createdAt: '2023-09-04T08:25:00Z',
     priority: 'Low',
     status: 'In Progress',
@@ -193,7 +193,7 @@ export const tasks: T_Task[] = [
   {
     taskId: '22',
     title: 'Implement caching strategy',
-    label: 'Feature',
+    type: 'Feature',
     createdAt: '2023-09-06T12:20:00Z',
     priority: 'High',
     status: 'Backlog',
@@ -202,7 +202,7 @@ export const tasks: T_Task[] = [
   {
     taskId: '23',
     title: 'Write API tests',
-    label: 'Feature',
+    type: 'Feature',
     createdAt: '2023-09-09T14:15:00Z',
     priority: 'Medium',
     status: 'In Progress',
@@ -211,7 +211,7 @@ export const tasks: T_Task[] = [
   {
     taskId: '24',
     title: 'Review user feedback',
-    label: 'Documentation',
+    type: 'Documentation',
     createdAt: '2023-09-12T10:45:00Z',
     priority: 'Low',
     status: 'To Do',
@@ -220,7 +220,7 @@ export const tasks: T_Task[] = [
   {
     taskId: '25',
     title: 'Fix error on checkout page',
-    label: 'Bug',
+    type: 'Bug',
     createdAt: '2023-09-15T17:00:00Z',
     priority: 'High',
     status: 'In Progress',

@@ -1,11 +1,11 @@
-export type Label = 'Bug' | 'Feature' | 'Documentation';
+export type T_TaskType = 'Bug' | 'Feature' | 'Documentation';
 export type Priority = 'Low' | 'Medium' | 'High';
 export type Status = 'To Do' | 'In Progress' | 'Done' | 'Backlog' | 'Cancelled';
 
 export type T_Task = {
   createdAt: string; // ISO_date_string
   isFavorite: boolean;
-  label: Label;
+  type: T_TaskType;
   priority: Priority;
   status: Status;
   taskId: string;

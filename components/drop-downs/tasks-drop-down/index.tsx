@@ -16,7 +16,7 @@ import { LabelSubMenu } from './sub-label-menu';
 import { MENU_ITEMS } from './constants';
 // import { T_MenuItemType } from './types';
 // import { useTasksDataStore } from '@/app/hooks/useTasksDataStore';
-// import { Label, T_Task } from '@/app-types';
+// import { T_TaskType, T_Task } from '@/app-types';
 // import { toast } from '@/hooks/use-toast';
 
 type T_Props = { onOpen: () => void; onClose: () => void };
@@ -55,8 +55,8 @@ export const TaskDropDown: React.FC<T_Props> = ({ onOpen, onClose }) => {
   //   // Function to handle label clicks
   //   const clickedLabelItem = async (newLabel: string) => {
   //     // Validate the new label
-  //     const validLabels: Label[] = ['Bug', 'Documentation', 'Feature'];
-  //     if (!validLabels.includes(newLabel as Label)) {
+  //     const validLabels: T_TaskType[] = ['Bug', 'Documentation', 'Feature'];
+  //     if (!validLabels.includes(newLabel as T_TaskType)) {
   //       console.error(`The type ${newLabel} is incorrect`);
   //       return;
   //     }
@@ -65,7 +65,7 @@ export const TaskDropDown: React.FC<T_Props> = ({ onOpen, onClose }) => {
   //     if (selectedTask && tasks) {
   //       const updatedTask: T_Task = {
   //         ...selectedTask,
-  //         label: newLabel as Label,
+  //         type: newLabel as T_TaskType,
   //       };
 
   //       // Create a new tasks array with the updated task
