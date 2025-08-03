@@ -57,8 +57,8 @@ export const TaskStatus = () => {
               </SelectTrigger>
               <SelectContent className='poppins'>
                 <SelectGroup>
-                  {statuses.map((status, index) => (
-                    <SelectItem key={index} value={status.value}>
+                  {statuses.map((status) => (
+                    <SelectItem key={status.value} value={status.value}>
                       <div className='flex items-center gap-2'>
                         <status.icon size={15} />
                         <span>{status.value}</span>
