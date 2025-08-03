@@ -32,7 +32,7 @@ export const TasksArea = () => {
         </CardHeader>
 
         <CardContent>
-          
+          {/* TABLE CONTENT */}
         </CardContent>
 
         <CardFooter> 

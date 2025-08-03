@@ -1,16 +1,4 @@
-export type Label = 'Bug' | 'Feature' | 'Documentation';
-export type Priority = 'Low' | 'Medium' | 'High';
-export type Status = 'To Do' | 'In Progress' | 'Done' | 'Backlog' | 'Cancelled';
-
-export interface T_Task {
-  createdAt: string; // ISO date string
-  isFavorite: boolean;
-  label: Label;
-  priority: Priority;
-  status: Status;
-  taskId: string;
-  title: string;
-}
+import { T_Task } from '@/app-types';
 
 export const tasks: T_Task[] = [
   {
