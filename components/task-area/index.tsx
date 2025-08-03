@@ -1,13 +1,15 @@
 import { IoCloseSharp } from 'react-icons/io5';
-import { Button } from '../ui/button';
-import { Card, CardContent, CardFooter, CardHeader } from '../ui/card';
-import { SearchInput } from './search-input';
+
 import {
   PriorityDropDown,
   StatusDropDown,
   ViewColumnsDropdown,
 } from '../drop-downs';
+import { Button } from '../ui/button';
+import { Card, CardContent, CardFooter, CardHeader } from '../ui/card';
+
 import { PaginationArea } from './pagination';
+import { SearchInput } from './search-input';
 
 export const TasksArea = () => {
   return (

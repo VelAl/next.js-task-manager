@@ -1,5 +1,11 @@
+import { Controller, useFormContext } from 'react-hook-form';
+import { IoMdArrowUp } from 'react-icons/io';
+import { IoArrowBack, IoArrowDown } from 'react-icons/io5';
+import { IconType } from 'react-icons/lib';
+
 import { Label } from '@radix-ui/react-dropdown-menu';
 
+import { T_Task } from '@/app-types';
 import {
   Select,
   SelectContent,
@@ -9,13 +15,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 
-import { IoMdArrowUp } from 'react-icons/io';
-import { IoArrowBack } from 'react-icons/io5';
-import { IoArrowDown } from 'react-icons/io5';
-import { IconType } from 'react-icons/lib';
-import { Controller, useFormContext } from 'react-hook-form';
 import { TaskFormData } from '../task-dialog-schema';
-import { T_Task } from '@/app-types';
 
 type Priority = {
   value: T_Task['priority'];

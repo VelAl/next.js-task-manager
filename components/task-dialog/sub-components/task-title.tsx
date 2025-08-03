@@ -1,6 +1,9 @@
-import { Label } from "@radix-ui/react-dropdown-menu";
-import { Input } from "@/components/ui/input";
 import { useFormContext } from "react-hook-form";
+
+import { Label } from "@radix-ui/react-dropdown-menu";
+
+import { Input } from "@/components/ui/input";
+
 import { TaskFormData } from "../task-dialog-schema";
 
 export default function TaskTitle() {

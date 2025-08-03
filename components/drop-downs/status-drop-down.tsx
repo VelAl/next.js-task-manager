@@ -1,13 +1,19 @@
 'use client';
 import { useState } from 'react';
-import { IoMdArrowUp } from 'react-icons/io';
-import { IoArrowBack, IoArrowDown } from 'react-icons/io5';
-import { IconType } from 'react-icons/lib';
-import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
-import { Button } from '../ui/button';
 import { GoPlusCircle } from 'react-icons/go';
-import { Separator } from '../ui/separator';
+import { IconType } from 'react-icons/lib';
+
+import {
+  ArrowUpCircle,
+  CheckCircle2,
+  Circle,
+  HelpCircle,
+  XCircle,
+} from 'lucide-react';
+
 import { Badge } from '../ui/badge';
+import { Button } from '../ui/button';
+import { Checkbox } from '../ui/checkbox';
 import {
   Command,
   CommandEmpty,
@@ -16,14 +22,8 @@ import {
   CommandItem,
   CommandList,
 } from '../ui/command';
-import { Checkbox } from '../ui/checkbox';
-import {
-  ArrowUpCircle,
-  CheckCircle2,
-  Circle,
-  HelpCircle,
-  XCircle,
-} from 'lucide-react';
+import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
+import { Separator } from '../ui/separator';
 
 type Status = {
   value: string;

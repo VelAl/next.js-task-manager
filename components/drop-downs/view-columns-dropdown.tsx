@@ -1,6 +1,8 @@
 'use client';
 
 import { useState } from 'react';
+import { BiColumns } from 'react-icons/bi';
+
 import { DropdownMenuCheckboxItemProps } from '@radix-ui/react-dropdown-menu';
 
 import { Button } from '@/components/ui/button';
@@ -12,7 +14,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { BiColumns } from 'react-icons/bi';
 
 type Checked = DropdownMenuCheckboxItemProps['checked'];
 

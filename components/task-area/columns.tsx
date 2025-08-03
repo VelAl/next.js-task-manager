@@ -1,7 +1,10 @@
 'use client';
-import { Column, ColumnDef } from '@tanstack/react-table';
+import { AiFillStar } from 'react-icons/ai';
+import { GrHide } from 'react-icons/gr';
+import { IoMdArrowDown, IoMdArrowUp } from 'react-icons/io';
+import { IoArrowBack, IoArrowDown, IoArrowUp } from 'react-icons/io5';
 
-import { type T_Task } from '@/data-mocked/tasks-data';
+import { Column, ColumnDef } from '@tanstack/react-table';
 import {
   ArrowUpCircle,
   ArrowUpDown,
@@ -11,10 +14,11 @@ import {
   Star,
   XCircle,
 } from 'lucide-react';
-import { IoArrowBack, IoArrowDown, IoArrowUp } from 'react-icons/io5';
-import { IoMdArrowDown, IoMdArrowUp } from 'react-icons/io';
-import { GrHide } from 'react-icons/gr';
-import { AiFillStar } from 'react-icons/ai';
+
+import { T_Task } from '@/app-types';
+
+import { Badge } from '../ui/badge';
+import { Checkbox } from '../ui/checkbox';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -22,8 +26,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '../ui/dropdown-menu';
-import { Checkbox } from '../ui/checkbox';
-import { Badge } from '../ui/badge';
 
 const statusIcns = {
   'To Do': Circle,

@@ -1,7 +1,8 @@
-import { Button } from '@/components/ui/button';
 
-import { GrFormPrevious, GrFormNext } from 'react-icons/gr';
 import { BiFirstPage, BiLastPage } from 'react-icons/bi';
+import { GrFormNext,GrFormPrevious } from 'react-icons/gr';
+
+import { Button } from '@/components/ui/button';
 
 import { PaginationSelection } from './pagination-selection';
 

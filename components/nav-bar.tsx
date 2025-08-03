@@ -1,9 +1,10 @@
 // 'use client';
 
 import { ListTodo } from 'lucide-react';
+
+import { Button } from './ui/button';
 // import { useTheme } from 'next-themes';
 import { ThemeModeToggle } from './theme-mode-toggle';
-import { Button } from './ui/button';
 
 const AppNameLogo = () => {
   return (

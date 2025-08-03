@@ -1,5 +1,6 @@
-import { FaTasks, FaCheckCircle, FaExclamationTriangle } from 'react-icons/fa';
-import { Card, CardHeader, CardTitle, CardContent } from './ui/card';
+import { FaCheckCircle, FaExclamationTriangle,FaTasks } from 'react-icons/fa';
+
+import { Card, CardContent,CardHeader, CardTitle } from './ui/card';
 
 type T_SingleCardProps = {
   title: string;

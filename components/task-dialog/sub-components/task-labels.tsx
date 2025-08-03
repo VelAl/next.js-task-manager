@@ -1,5 +1,8 @@
+import { Controller, useFormContext } from 'react-hook-form';
+
 import { Label } from '@radix-ui/react-dropdown-menu';
 
+import { TASK_TYPE_LABELS } from '@/components/drop-downs/tasks-drop-down/constants';
 import {
   Select,
   SelectContent,
@@ -9,9 +12,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 
-import { Controller, useFormContext } from 'react-hook-form';
 import { TaskFormData } from '../task-dialog-schema';
-import { TASK_TYPE_LABELS } from '@/components/drop-downs/tasks-drop-down/constants';
 
 export const TaskType = () => {
   const { control } = useFormContext<TaskFormData>();

@@ -1,13 +1,13 @@
 'use client';
 import { useState } from 'react';
+import { GoPlusCircle } from 'react-icons/go';
 import { IoMdArrowUp } from 'react-icons/io';
 import { IoArrowBack, IoArrowDown } from 'react-icons/io5';
 import { IconType } from 'react-icons/lib';
-import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
-import { Button } from '../ui/button';
-import { GoPlusCircle } from 'react-icons/go';
-import { Separator } from '../ui/separator';
+
 import { Badge } from '../ui/badge';
+import { Button } from '../ui/button';
+import { Checkbox } from '../ui/checkbox';
 import {
   Command,
   CommandEmpty,
@@ -16,7 +16,8 @@ import {
   CommandItem,
   CommandList,
 } from '../ui/command';
-import { Checkbox } from '../ui/checkbox';
+import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
+import { Separator } from '../ui/separator';
 
 type Status = {
   value: string;
@@ -34,7 +35,7 @@ export const PriorityDropDown = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedPriority, setSelectedPriority] = useState<Status | null>(null);
 
-//   console.log('selectedPriority ===>', selectedPriority);
+  // console.log('selectedPriority ===>', selectedPriority);
 
   return (
     <div className='flex items-center space-x-4'>

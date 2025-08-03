@@ -1,5 +1,16 @@
-import { Label } from '@radix-ui/react-dropdown-menu';
+import { Controller, useFormContext } from 'react-hook-form';
 
+import { Label } from '@radix-ui/react-dropdown-menu';
+import {
+  ArrowUpCircle,
+  CheckCircle2,
+  Circle,
+  HelpCircle,
+  LucideIcon,
+  XCircle,
+} from 'lucide-react';
+
+import { T_Task } from '@/app-types';
 import {
   Select,
   SelectContent,
@@ -9,17 +20,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 
-import {
-  ArrowUpCircle,
-  CheckCircle2,
-  Circle,
-  HelpCircle,
-  LucideIcon,
-  XCircle,
-} from 'lucide-react';
-import { Controller, useFormContext } from 'react-hook-form';
 import { TaskFormData } from '../task-dialog-schema';
-import { T_Task } from '@/app-types';
 
 type Status = {
   value: T_Task['status'];

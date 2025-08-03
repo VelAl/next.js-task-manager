@@ -1,12 +1,14 @@
+import { Tag } from 'lucide-react';
+
 import {
-  DropdownMenuSub,
-  DropdownMenuSubTrigger,
   DropdownMenuPortal,
-  DropdownMenuSubContent,
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
 } from '@/components/ui/dropdown-menu';
-import { Tag } from 'lucide-react';
+
 import { TASK_TYPE_LABELS } from './constants';
 
 interface T_Props {

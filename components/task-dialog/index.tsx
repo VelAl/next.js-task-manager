@@ -1,27 +1,25 @@
 'use client';
 
+import { Button } from '@/components/ui/button';
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
+  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-  DialogFooter,
-  DialogClose,
 } from '@/components/ui/dialog';
-
 import { Separator } from '@/components/ui/separator';
-import { Button } from '@/components/ui/button';
-import TaskTitle from './sub-components/task-title';
-
-import { TaskStatus } from './sub-components/task-status';
-import { TaskPriority } from './sub-components/task-priority';
 
 // import { FormProvider, useForm } from 'react-hook-form';
 // import { zodResolver } from '@hookform/resolvers/zod';
 // import { TaskFormData, taskFormSchema } from './task-dialog-schema';
 import { TaskType } from './sub-components/task-labels';
+import { TaskPriority } from './sub-components/task-priority';
+import { TaskStatus } from './sub-components/task-status';
+import TaskTitle from './sub-components/task-title';
 // import { generateRandomThreeDigitNumber } from '@/app/functions/generateRandomNumbers';
 // import { useToast } from '@/hooks/use-toast';
 // import { Task } from '@/app/data/tasks-data';
