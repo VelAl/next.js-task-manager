@@ -7,7 +7,7 @@ import {
   DropdownMenuRadioItem,
 } from '@/components/ui/dropdown-menu';
 import { Tag } from 'lucide-react';
-import { LABEL_OPTIONS } from './constants';
+import { TASK_TYPE_LABELS } from './constants';
 
 interface T_Props {
   value: string;
@@ -42,7 +42,7 @@ export const LabelSubMenu: React.FC<T_Props> = ({
             // onValueChange={handleValueChange}
             onValueChange={onValueChange}
           >
-            {LABEL_OPTIONS.map((option) => (
+            {TASK_TYPE_LABELS.map((option) => (
               <DropdownMenuRadioItem key={option} value={option}>
                 {option}
               </DropdownMenuRadioItem>

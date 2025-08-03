@@ -30,7 +30,7 @@ const statusIcns = {
   'In Progress': ArrowUpCircle,
   Done: CheckCircle,
   Backlog: HelpCircle,
-  Cancelled: XCircle,
+  Canceled: XCircle,
 } as const;
 
 const priorityIcns = {

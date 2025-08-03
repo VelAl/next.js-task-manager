@@ -1,6 +1,6 @@
 export type T_TaskType = 'Bug' | 'Feature' | 'Documentation';
 export type Priority = 'Low' | 'Medium' | 'High';
-export type Status = 'To Do' | 'In Progress' | 'Done' | 'Backlog' | 'Cancelled';
+export type Status = 'To Do' | 'In Progress' | 'Done' | 'Backlog' | 'Canceled';
 
 export type T_Task = {
   createdAt: string; // ISO_date_string

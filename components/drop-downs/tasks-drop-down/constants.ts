@@ -23,7 +23,7 @@ export const MENU_ITEMS: T_MenuItemType[] = [
   },
 ];
 
-export const LABEL_OPTIONS: T_TaskType[] = [
+export const TASK_TYPE_LABELS: T_TaskType[] = [
   'Bug',
   'Feature',
   'Documentation',
