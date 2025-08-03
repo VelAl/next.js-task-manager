@@ -44,9 +44,11 @@ const priorityIcns = {
 function formatDate(isoDateString: string): string {
   const date = new Date(isoDateString);
 
-  const formattedDate = new Intl.DateTimeFormat(navigator.language).format(
-    date
-  );
+  const formattedDate = new Intl.DateTimeFormat(navigator.language, {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+  }).format(date);
 
   return formattedDate;
 }
@@ -124,30 +126,41 @@ export const tasksColumns: ColumnDef<T_Task>[] = [
     enableSorting: false,
     enableHiding: false,
   },
+
   //_______TASK_ID_______________________________________________________
   {
     header: 'Task ID',
     accessorKey: 'taskId',
   },
+
   //_______IS_FAVORITE_STAR______________________________________________
   {
     accessorKey: 'isFavorite',
     header: '',
     cell: ({ row }) => {
-      return row.original.isFavorite ? AiFillStar : Star;
+      return (
+        <div className='flex justify-center'>
+          {row.original.isFavorite ? (
+            <AiFillStar color='gold' size={28} />
+          ) : (
+            <Star />
+          )}
+        </div>
+      );
     },
   },
+
   //_______TITLE_________________________________________________________
   {
     accessorKey: 'title',
     header: ({ column }) => <SortableHeader column={column} label='Title' />,
     cell: ({ row }) => {
-      const label = row.original.label;
+      const type = row.original.type;
       const title = row.original.title;
 
       return (
         <div className='flex items-center gap-2'>
-          <Badge variant='outline'>{label}</Badge>
+          <Badge variant='outline'>{type}</Badge>
           <span>{title}</span>
         </div>
       );
@@ -156,7 +169,7 @@ export const tasksColumns: ColumnDef<T_Task>[] = [
   //_______STATUS________________________________________________________
   {
     accessorKey: 'status',
-    header: "Status",
+    header: 'Status',
     cell: ({ row }) => {
       const status = row.getValue('status') as keyof typeof statusIcns;
       const Icon = statusIcns[status];
@@ -169,10 +182,11 @@ export const tasksColumns: ColumnDef<T_Task>[] = [
       );
     },
   },
+
   //_______PRIORITY______________________________________________________
   {
     accessorKey: 'priority',
-    header: "Priority",
+    header: 'Priority',
 
     cell: ({ row }) => {
       const priority = row.original.priority as keyof typeof priorityIcns;
@@ -186,14 +200,18 @@ export const tasksColumns: ColumnDef<T_Task>[] = [
       );
     },
   },
+
   //_______CREATED_AT____________________________________________________
   {
     accessorKey: 'createdAt',
     header: ({ column }) => (
       <SortableHeader column={column} label='Created At' />
     ),
-    cell: ({ row }) => formatDate(row.getValue('createdAt')),
+    cell: ({ row }) => (
+      <span className='font-mono'>{formatDate(row.getValue('createdAt'))}</span>
+    ),
   },
+
   //_______ACTIONS_______________________________________________________
   { id: 'actions' },
 ];

@@ -1,5 +1,7 @@
 import { IoCloseSharp } from 'react-icons/io5';
 
+import { tasks } from '@/data-mocked/tasks-data';
+
 import {
   PriorityDropDown,
   StatusDropDown,
@@ -8,8 +10,10 @@ import {
 import { Button } from '../ui/button';
 import { Card, CardContent, CardFooter, CardHeader } from '../ui/card';
 
+import { tasksColumns } from './columns';
 import { PaginationArea } from './pagination';
 import { SearchInput } from './search-input';
+import { TasksTable } from './tasks-table';
 
 export const TasksArea = () => {
   return (
@@ -34,10 +38,10 @@ export const TasksArea = () => {
         </CardHeader>
 
         <CardContent>
-          {/* TABLE CONTENT */}
+          <TasksTable columns={tasksColumns} data={tasks} />
         </CardContent>
 
-        <CardFooter> 
+        <CardFooter>
           <PaginationArea />
         </CardFooter>
       </Card>
