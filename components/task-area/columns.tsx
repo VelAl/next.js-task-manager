@@ -155,17 +155,40 @@ export const tasksColumns: ColumnDef<T_Task>[] = [
     accessorKey: 'title',
     header: ({ column }) => <SortableHeader column={column} label='Title' />,
     cell: ({ row }) => {
-      const type = row.original.type;
       const title = row.original.title;
 
       return (
         <div className='flex items-center gap-2'>
-          <Badge variant='outline'>{type}</Badge>
           <span>{title}</span>
         </div>
       );
     },
   },
+
+  //_______TYPE__________________________________________________________
+  {
+    accessorKey: 'type',
+    header: 'Type',
+    cell: ({ row }) => {
+      const type = row.getValue('type') as T_Task['type'];
+      return (
+        <div className='flex items-center gap-2'>
+          <Badge
+            variant={
+              type === 'Bug'
+                ? 'destructive'
+                : type === 'Feature'
+                ? 'default'
+                : 'sky'
+            }
+          >
+            {type}
+          </Badge>
+        </div>
+      );
+    },
+  },
+
   //_______STATUS________________________________________________________
   {
     accessorKey: 'status',

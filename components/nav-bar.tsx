@@ -2,7 +2,7 @@
 
 import { ListTodo } from 'lucide-react';
 
-import { Button } from './ui/button';
+import { TaskDialog } from './task-dialog';
 // import { useTheme } from 'next-themes';
 import { ThemeModeToggle } from './theme-mode-toggle';
 
@@ -29,7 +29,8 @@ export const NavBar = () => {
       <AppNameLogo />
 
       <div className='flex items-center gap-3 justify-center'>
-        <Button>Add Task</Button>
+        <TaskDialog />
+        
         <ThemeModeToggle />
       </div>
     </header>

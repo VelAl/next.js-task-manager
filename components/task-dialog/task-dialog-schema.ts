@@ -1,8 +1,5 @@
 import { z } from 'zod';
 
-export type Label = 'Bug' | 'Feature' | 'Documentation';
-export type Priority = 'Low' | 'Medium' | 'High';
-
 export const taskFormSchema = z.object({
   title: z.string().min(1, 'Title is required').max(100, 'Title is too long'),
   status: z.enum(['Backlog', 'Todo', 'In Progress', 'Done', 'Canceled']),
@@ -11,4 +8,4 @@ export const taskFormSchema = z.object({
 });
 
 // Infer the type from the schema
-export type TaskFormData = z.infer<typeof taskFormSchema>;
+export type T_TaskFormData = z.infer<typeof taskFormSchema>;

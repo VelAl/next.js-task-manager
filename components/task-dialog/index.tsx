@@ -15,7 +15,7 @@ import { Separator } from '@/components/ui/separator';
 
 // import { FormProvider, useForm } from 'react-hook-form';
 // import { zodResolver } from '@hookform/resolvers/zod';
-// import { TaskFormData, taskFormSchema } from './task-dialog-schema';
+// import { T_TaskFormData, taskFormSchema } from './task-dialog-schema';
 import { TaskType } from './sub-components/task-labels';
 import { TaskPriority } from './sub-components/task-priority';
 import { TaskStatus } from './sub-components/task-status';
@@ -32,7 +32,7 @@ export const TaskDialog = () => {
   // const { addTask, selectedTask, setSelectedTask, updateTasks, tasks } =
   //   useTasksDataStore();
 
-  // const methods = useForm<TaskFormData>({
+  // const methods = useForm<T_TaskFormData>({
   //   resolver: zodResolver(taskFormSchema),
   //   defaultValues: {
   //     title: '',
@@ -55,7 +55,7 @@ export const TaskDialog = () => {
   //   }
   // }, [isOpen, selectedTask, setValue]);
 
-  // const onSubmit = async (data: TaskFormData) => {
+  // const onSubmit = async (data: T_TaskFormData) => {
   //   setIsLoading(true);
 
   //   if (!selectedTask) {
@@ -155,11 +155,13 @@ export const TaskDialog = () => {
             <TaskTitle />
             <TaskStatus />
           </div>
+
           <div className='grid grid-cols-2 gap-5 mt-6'>
             <TaskPriority />
             <TaskType />
           </div>
         </div>
+
         <DialogFooter className='mb-4'>
           <DialogClose asChild>
             <Button type='button' variant='secondary' className='px-9'>
