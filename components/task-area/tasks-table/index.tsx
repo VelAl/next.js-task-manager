@@ -1,9 +1,13 @@
 'use client';
 
+import { useEffect, useState } from 'react';
+
 import {
   ColumnDef,
+  ColumnFiltersState,
   flexRender,
   getCoreRowModel,
+  getFilteredRowModel,
   useReactTable,
 } from '@tanstack/react-table';
 
@@ -15,6 +19,9 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
+import { useSearchQueryStore } from '@/hooks';
+
+import { titleFilter } from '../filters';
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -25,11 +32,33 @@ export function TasksTable<TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
+  const { searchQuery } = useSearchQueryStore();
+
+  console.log('searchQuery ===>', searchQuery);
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+
   const table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+    
+    onColumnFiltersChange: setColumnFilters,
+
+    state: { columnFilters },
+
+    filterFns: { titleFilter },
   });
+
+  useEffect(() => {
+    const newFilters: ColumnFiltersState = [];
+
+    if (searchQuery) {
+      newFilters.push({ id: 'title', value: searchQuery });
+    }
+
+    setColumnFilters(newFilters);
+  }, [searchQuery]);
 
   return (
     <div className='overflow-hidden rounded-md border'>
