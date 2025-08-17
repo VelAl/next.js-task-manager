@@ -25,7 +25,7 @@ export const ViewColumnsDropdown = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant='outline' className='h-11 px-8 popppins'>
+        <Button className='h-11 px-8 popppins' variant='outline'>
           <BiColumns />
           <span>View</span>
         </Button>

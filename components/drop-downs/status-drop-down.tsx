@@ -47,12 +47,12 @@ export const StatusDropDown = () => {
 
   return (
     <div className='flex items-center space-x-4'>
-      <Popover open={isOpen} onOpenChange={setIsOpen}>
+      <Popover onOpenChange={setIsOpen} open={isOpen}>
         <PopoverTrigger asChild>
           <Button
+            className='h-10 justify-start border-dashed px-5'
             size={'sm'}
             variant={'outline'}
-            className='h-10 justify-start border-dashed px-5'
           >
             <div className='flex items-center gap-4'>
               <div className='flex items-center gap-2'>
@@ -61,8 +61,8 @@ export const StatusDropDown = () => {
               </div>
 
               <Separator
-                orientation='vertical'
                 className='h-6 border-1 border-gray-300'
+                orientation='vertical'
               />
 
               <div className='flex items-center gap-2'>
@@ -74,9 +74,9 @@ export const StatusDropDown = () => {
         </PopoverTrigger>
 
         <PopoverContent
+          align='center'
           className='p-0 poppins w-52'
           side='bottom'
-          align='center'
         >
           <Command>
             <CommandInput placeholder='Change priority...' />
@@ -87,14 +87,14 @@ export const StatusDropDown = () => {
               <CommandGroup heading='Suggestions'>
                 {statuses.map((status) => (
                   <CommandItem
-                    key={status.value}
-                    value={status.value}
                     className='flex justify-between'
+                    key={status.value}
                     onSelect={(value) => {
                       setSelectedStatus(
                         statuses.find((s) => s.value === value) || null
                       );
                     }}
+                    value={status.value}
                   >
                     <div className='flex items-center gap-3'>
                       <Checkbox />

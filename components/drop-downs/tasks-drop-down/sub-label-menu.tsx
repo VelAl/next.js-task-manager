@@ -40,9 +40,9 @@ export const LabelSubMenu: React.FC<T_Props> = ({
       <DropdownMenuPortal>
         <DropdownMenuSubContent className='poppins'>
           <DropdownMenuRadioGroup
-            value={value}
             // onValueChange={handleValueChange}
             onValueChange={onValueChange}
+            value={value}
           >
             {TASK_TYPE_LABELS.map((option) => (
               <DropdownMenuRadioItem key={option} value={option}>

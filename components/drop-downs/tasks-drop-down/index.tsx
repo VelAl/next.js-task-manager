@@ -109,9 +109,9 @@ export const TaskDropDown: React.FC<T_Props> = ({ onOpen, onClose }) => {
         <DropdownMenuGroup>
           {MENU_ITEMS.map((item) => (
             <MenuItem
+              Icon={item.icon}
               key={item.label}
               // kind={item.kind}
-              Icon={item.icon}
               label={item.label}
               shortcut={item.shortcut}
             />
@@ -123,20 +123,19 @@ export const TaskDropDown: React.FC<T_Props> = ({ onOpen, onClose }) => {
         <DropdownMenuGroup>
           <LabelSubMenu
             // onClickedLabelItem={clickedLabelItem}
-            value={selectedLabel}
             onValueChange={setSelectedLabel}
+            value={selectedLabel}
           />
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
 
         <MenuItem
           Icon={Trash}
-          //   kind='delete'
-          label='Delete'
-          shortcut='⇧⌘Q'
           className='text-red-500'
+          label='Delete'
+          //   kind='delete'
+          shortcut='⇧⌘Q'
         />
-
       </DropdownMenuContent>
     </DropdownMenu>
   );

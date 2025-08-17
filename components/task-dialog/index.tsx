@@ -164,7 +164,7 @@ export const TaskDialog = () => {
 
         <DialogFooter className='mb-4'>
           <DialogClose asChild>
-            <Button type='button' variant='secondary' className='px-9'>
+            <Button className='px-9' type='button' variant='secondary'>
               Close
             </Button>
           </DialogClose>

@@ -9,11 +9,11 @@ export const SearchInput = () => {
 
   return (
     <Input
-      type='text'
-      placeholder='Search tasks...'
       className='h-10'
-      value={searchQuery}
       onChange={({ target: { value } }) => setSearchQuery(value)}
+      placeholder='Search tasks...'
+      type='text'
+      value={searchQuery}
     />
   );
 };

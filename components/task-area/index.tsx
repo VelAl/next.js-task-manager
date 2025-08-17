@@ -27,7 +27,7 @@ export const TasksArea = () => {
               <StatusDropDown />
               <PriorityDropDown />
 
-              <Button variant={'ghost'} className='h-10'>
+              <Button className='h-10' variant={'ghost'}>
                 <span>Reset</span>
                 <IoCloseSharp />
               </Button>

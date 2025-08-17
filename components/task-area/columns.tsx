@@ -79,7 +79,7 @@ const SortableHeader = ({ column, label }: T_SortableHeaderProps) => {
         </div>
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent align='start' side='bottom' className='poppins'>
+      <DropdownMenuContent align='start' className='poppins' side='bottom'>
         <DropdownMenuItem onClick={() => column.toggleSorting(false)}>
           <IoMdArrowUp className='mr-2 h-4 w-4' />
           Asc
@@ -199,7 +199,7 @@ export const tasksColumns: ColumnDef<T_Task>[] = [
 
       return (
         <div className='flex items-center gap-2 text-sm'>
-          {Icon && <Icon size={17} className='text-gray-500 opacity-95' />}
+          {Icon && <Icon className='text-gray-500 opacity-95' size={17} />}
           <span>{status}</span>
         </div>
       );
@@ -217,7 +217,7 @@ export const tasksColumns: ColumnDef<T_Task>[] = [
 
       return (
         <div className='flex items-center gap-2 text-sm'>
-          {Icon && <Icon size={17} className='text-gray-500 opacity-95' />}
+          {Icon && <Icon className='text-gray-500 opacity-95' size={17} />}
           <span>{priority}</span>
         </div>
       );

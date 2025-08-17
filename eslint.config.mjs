@@ -1,5 +1,6 @@
 import { FlatCompat } from '@eslint/eslintrc';
 import pluginImport from 'eslint-plugin-import';
+import pluginReact from 'eslint-plugin-react'
 import pluginSimpleImportSort from 'eslint-plugin-simple-import-sort';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
@@ -20,6 +21,7 @@ const eslintConfig = [
   {
     plugins: {
       import: pluginImport,
+      react: pluginReact,
       'simple-import-sort': pluginSimpleImportSort,
     },
     rules: {
@@ -52,6 +54,16 @@ const eslintConfig = [
 
       // Optional: group/order with import/order if you also want visual structure
       'import/order': 'off', // Disable if using simple-import-sort
+
+      'react/jsx-sort-props': [
+        'warn',
+        {
+          callbacksLast: false,
+          shorthandFirst: false,
+          noSortAlphabetically: false,
+          reservedFirst: false,
+        },
+      ],
     },
     settings: {
       // Support TypeScript path aliases

@@ -16,9 +16,9 @@ export default function TaskTitle() {
       <Label className='opacity-75 text-sm font-medium'>Task Title</Label>
 
       <Input
+        className='h-9'
         placeholder='Study...'
         //  {...register("title")}
-        className='h-9'
       />
 
       {/* {errors.title && (

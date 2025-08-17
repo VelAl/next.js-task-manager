@@ -1,6 +1,5 @@
-
 import { BiFirstPage, BiLastPage } from 'react-icons/bi';
-import { GrFormNext,GrFormPrevious } from 'react-icons/gr';
+import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
 
 import { Button } from '@/components/ui/button';
 
@@ -20,8 +19,8 @@ export const PaginationArea = () => {
           <div className='flex items-center justify-end space-x-2'>
             {/*____________FIRST PAGE BTN _________________________________________*/}
             <Button
-              variant='outline'
               size='sm'
+              variant='outline'
               className='size-9 w-12'
               // onClick={() => table.setPageIndex(0)}
               // disabled={!table.getCanPreviousPage()}
@@ -31,9 +30,9 @@ export const PaginationArea = () => {
 
             {/*____________PREVIOUS PAGE BTN ______________________________________*/}
             <Button
-              variant='outline'
-              size='sm'
               className='size-9 w-12'
+              size='sm'
+              variant='outline'
               // onClick={() => table.prevPage()}
               // disabled={!table.getCanPreviousPage()}
             >
@@ -42,9 +41,9 @@ export const PaginationArea = () => {
 
             {/*____________NEXT PAGE BTN __________________________________________*/}
             <Button
-              variant='outline'
-              size='sm'
               className='size-9 w-12'
+              size='sm'
+              variant='outline'
               // onClick={() => table.nextPage()}
               // disabled={!table.getCanNextPage()}
             >
@@ -53,9 +52,9 @@ export const PaginationArea = () => {
 
             {/*____________LAST PAGE BTN __________________________________________*/}
             <Button
-              variant='outline'
-              size='sm'
               className='size-9 w-12'
+              size='sm'
+              variant='outline'
               // onClick={() => table.setPageIndex(table.getPageCount() - 1)}
               // disabled={!table.getCanNextPage()}
             >
