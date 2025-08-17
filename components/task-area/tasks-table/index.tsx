@@ -5,12 +5,14 @@ import { useEffect, useState } from 'react';
 import {
   ColumnDef,
   ColumnFiltersState,
+  FilterFn,
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
   useReactTable,
 } from '@tanstack/react-table';
 
+import { T_Task } from '@/app-types';
 import {
   Table,
   TableBody,
@@ -23,6 +25,12 @@ import { useSearchQueryStore } from '@/hooks';
 
 import { titleFilter } from '../filters';
 
+declare module '@tanstack/table-core' {
+  interface FilterFns {
+    titleFilter: FilterFn<T_Task>;
+  }
+}
+
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
@@ -32,9 +40,8 @@ export function TasksTable<TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
-  const { searchQuery } = useSearchQueryStore();
+  const { searchQuery } = useSearchQueryStore(); // zustand
 
-  console.log('searchQuery ===>', searchQuery);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 
   const table = useReactTable({
@@ -42,7 +49,7 @@ export function TasksTable<TData, TValue>({
     columns,
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
-    
+
     onColumnFiltersChange: setColumnFilters,
 
     state: { columnFilters },

@@ -6,6 +6,6 @@ type SearchQueryState = {
 };
 
 export const useSearchQueryStore = create<SearchQueryState>((set) => ({
-  searchQuery: 'fix',
+  searchQuery: '',
   setSearchQuery: (searchQuery) => set({ searchQuery }),
 }));
