@@ -7,7 +7,7 @@ import { IconType } from 'react-icons/lib';
 
 import { toast } from 'sonner';
 
-import { T_Priority } from '@/app-types';
+import { T_Priority, T_Task } from '@/app-types';
 import { priorities } from '@/constants';
 import { tasks } from '@/data-mocked/tasks-data';
 import { usePrioritiesStore } from '@/hooks';
@@ -39,6 +39,18 @@ const options: T_PriorityOption[] = [
   { value: 'High', label: 'High', icon: IoMdArrowUp, count: 0 },
 ];
 
+const getOptionsWithCounts = (tasks: T_Task[]) => {
+  const counts = tasks.reduce((acc, task) => {
+    acc[task.priority] = (acc[task.priority] || 0) + 1;
+    return acc;
+  }, {} as { [key in T_Priority]: number });
+
+  return options.map((opt) => ({
+    ...opt,
+    count: counts[opt.value] || 0,
+  }));
+};
+
 export const PriorityDropDown = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -59,17 +71,10 @@ export const PriorityDropDown = () => {
     setSelectedPriorities(newPriorities);
   };
 
-  const optionsWithCounts: T_PriorityOption[] = useMemo(() => {
-    const counts = tasks.reduce((acc, task) => {
-      acc[task.priority] = (acc[task.priority] || 0) + 1;
-      return acc;
-    }, {} as { [key in T_Priority]: number });
-
-    return options.map((opt) => ({
-      ...opt,
-      count: counts[opt.value] || 0,
-    }));
-  }, [tasks]);
+  const optionsWithCounts: T_PriorityOption[] = useMemo(
+    () => getOptionsWithCounts(tasks),
+    [tasks]
+  );
 
   return (
     <div className='flex items-center space-x-4'>
