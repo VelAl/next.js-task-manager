@@ -1,9 +1,16 @@
 'use client';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { GoPlusCircle } from 'react-icons/go';
 import { IoMdArrowUp } from 'react-icons/io';
 import { IoArrowBack, IoArrowDown } from 'react-icons/io5';
 import { IconType } from 'react-icons/lib';
+
+import { toast } from 'sonner';
+
+import { T_Priority } from '@/app-types';
+import { priorities } from '@/constants';
+import { tasks } from '@/data-mocked/tasks-data';
+import { usePrioritiesStore } from '@/hooks';
 
 import { Badge } from '../ui/badge';
 import { Button } from '../ui/button';
@@ -19,23 +26,50 @@ import {
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
 import { Separator } from '../ui/separator';
 
-type Status = {
-  value: string;
+type T_PriorityOption = {
+  value: T_Priority;
   label: string;
   icon: IconType;
+  count: number;
 };
 
-const statuses: Status[] = [
-  { value: 'low', label: 'Low', icon: IoArrowDown },
-  { value: 'medium', label: 'Medium', icon: IoArrowBack },
-  { value: 'high', label: 'High', icon: IoMdArrowUp },
+const options: T_PriorityOption[] = [
+  { value: 'Low', label: 'Low', icon: IoArrowDown, count: 0 },
+  { value: 'Medium', label: 'Medium', icon: IoArrowBack, count: 0 },
+  { value: 'High', label: 'High', icon: IoMdArrowUp, count: 0 },
 ];
 
 export const PriorityDropDown = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedPriority, setSelectedPriority] = useState<Status | null>(null);
 
-  // console.log('selectedPriority ===>', selectedPriority);
+  const { selectedPriorities, setSelectedPriorities } = usePrioritiesStore();
+
+  const updateSelection = (label: string) => {
+    const priority = label as T_Priority;
+
+    if (!priorities.includes(priority)) {
+      toast.error('Invalid priority selected');
+      return;
+    }
+
+    const newPriorities = selectedPriorities.includes(priority)
+      ? selectedPriorities.filter((p) => p !== priority)
+      : [...selectedPriorities, priority];
+
+    setSelectedPriorities(newPriorities);
+  };
+
+  const optionsWithCounts: T_PriorityOption[] = useMemo(() => {
+    const counts = tasks.reduce((acc, task) => {
+      acc[task.priority] = (acc[task.priority] || 0) + 1;
+      return acc;
+    }, {} as { [key in T_Priority]: number });
+
+    return options.map((opt) => ({
+      ...opt,
+      count: counts[opt.value] || 0,
+    }));
+  }, [tasks]);
 
   return (
     <div className='flex items-center space-x-4'>
@@ -58,8 +92,19 @@ export const PriorityDropDown = () => {
               />
 
               <div className='flex items-center gap-2'>
-                <Badge variant={'secondary'}>Low</Badge>
-                <Badge variant={'secondary'}>Medium</Badge>
+                {!selectedPriorities.length ? (
+                  <span className='text-gray-500'>Select priority</span>
+                ) : selectedPriorities.length <= 2 ? (
+                  selectedPriorities.map((priority) => (
+                    <Badge key={priority} variant='secondary'>
+                      {priority}
+                    </Badge>
+                  ))
+                ) : (
+                  <span className='text-gray-500'>
+                    Selected {selectedPriorities.length} priorities
+                  </span>
+                )}
               </div>
             </div>
           </Button>
@@ -77,24 +122,24 @@ export const PriorityDropDown = () => {
               <CommandEmpty>No results found.</CommandEmpty>
 
               <CommandGroup heading='Suggestions'>
-                {statuses.map((status) => (
+                {optionsWithCounts.map((option) => (
                   <CommandItem
                     className='flex justify-between'
-                    key={status.value}
-                    onSelect={(value) => {
-                      setSelectedPriority(
-                        statuses.find((s) => s.value === value) || null
-                      );
-                    }}
-                    value={status.value}
+                    key={option.value}
+                    onSelect={updateSelection}
+                    value={option.value}
                   >
                     <div className='flex items-center gap-3'>
-                      <Checkbox />
+                      <Checkbox
+                        checked={selectedPriorities.includes(option.value)}
+                      />
 
-                      <status.icon />
+                      <option.icon />
 
-                      <span>{status.label}</span>
+                      <span>{option.label}</span>
                     </div>
+
+                    <pre>{option.count}</pre>
                   </CommandItem>
                 ))}
               </CommandGroup>
