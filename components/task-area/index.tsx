@@ -1,5 +1,3 @@
-import { IoCloseSharp } from 'react-icons/io5';
-
 import { tasks } from '@/data-mocked/tasks-data';
 
 import {
@@ -7,7 +5,7 @@ import {
   StatusDropDown,
   ViewColumnsDropdown,
 } from '../drop-downs';
-import { Button } from '../ui/button';
+import { ResetFiltersBtn } from '../reset-filters-btn';
 import { Card, CardContent, CardFooter, CardHeader } from '../ui/card';
 
 import { tasksColumns } from './columns';
@@ -27,10 +25,7 @@ export const TasksArea = () => {
               <StatusDropDown />
               <PriorityDropDown />
 
-              <Button className='h-10' variant={'ghost'}>
-                <span>Reset</span>
-                <IoCloseSharp />
-              </Button>
+              <ResetFiltersBtn />
             </div>
 
             <ViewColumnsDropdown />

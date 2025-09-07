@@ -4,9 +4,10 @@ import { GoPlusCircle } from 'react-icons/go';
 
 import { toast } from 'sonner';
 
-import { T_Priority } from '@/app-types';
-import { priorities } from '@/constants';
-import { usePrioritiesStore, useTasksCounts } from '@/hooks';
+import { T_TaskStatus } from '@/app-types';
+import { statuses } from '@/constants';
+import { useTasksCounts } from '@/hooks';
+import { useStatusesStore } from '@/hooks/useStatusStore';
 
 import { Badge } from '../../ui/badge';
 import { Button } from '../../ui/button';
@@ -24,25 +25,27 @@ import { Separator } from '../../ui/separator';
 
 import { options } from './helpers';
 
-export const PriorityDropDown = () => {
+
+export const StatusDropDown = () => {
   const counts = useTasksCounts();
+
   const [isOpen, setIsOpen] = useState(false);
 
-  const { selectedPriorities, setSelectedPriorities } = usePrioritiesStore();
+  const { selectedStatuses, setSelectedStatuses } = useStatusesStore();
 
   const updateSelection = (label: string) => {
-    const priority = label as T_Priority;
+    const priority = label as T_TaskStatus;
 
-    if (!priorities.includes(priority)) {
-      toast.error('Invalid priority selected');
+    if (!statuses.includes(priority)) {
+      toast.error('Invalid status selected');
       return;
     }
 
-    const newPriorities = selectedPriorities.includes(priority)
-      ? selectedPriorities.filter((p) => p !== priority)
-      : [...selectedPriorities, priority];
+    const newStatuses = selectedStatuses.includes(priority)
+      ? selectedStatuses.filter((p) => p !== priority)
+      : [...selectedStatuses, priority];
 
-    setSelectedPriorities(newPriorities);
+    setSelectedStatuses(newStatuses);
   };
 
   return (
@@ -57,7 +60,7 @@ export const PriorityDropDown = () => {
             <div className='flex gap-4 h-6'>
               <div className='flex items-center gap-2'>
                 <GoPlusCircle />
-                <span>Priority</span>
+                <span>Status</span>
               </div>
 
               <Separator
@@ -66,17 +69,17 @@ export const PriorityDropDown = () => {
               />
 
               <div className='flex items-center gap-2'>
-                {!selectedPriorities.length ? (
+                {!selectedStatuses.length ? (
                   <span className='text-gray-500'>Select priority</span>
-                ) : selectedPriorities.length <= 2 ? (
-                  selectedPriorities.map((priority) => (
+                ) : selectedStatuses.length <= 2 ? (
+                  selectedStatuses.map((priority) => (
                     <Badge key={priority} variant='secondary'>
                       {priority}
                     </Badge>
                   ))
                 ) : (
                   <span className='text-gray-500'>
-                    Selected {selectedPriorities.length} priorities
+                    Selected {selectedStatuses.length} priorities
                   </span>
                 )}
               </div>
@@ -105,7 +108,7 @@ export const PriorityDropDown = () => {
                   >
                     <div className='flex items-center gap-3'>
                       <Checkbox
-                        checked={selectedPriorities.includes(option.value)}
+                        checked={selectedStatuses.includes(option.value)}
                       />
 
                       <option.icon />
