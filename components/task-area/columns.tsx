@@ -27,6 +27,8 @@ import {
   DropdownMenuTrigger,
 } from '../ui/dropdown-menu';
 
+import { priorityFilter, statusFilter, titleFilter } from './filters';
+
 const statusIcns = {
   'To Do': Circle,
   'In Progress': ArrowUpCircle,
@@ -154,6 +156,7 @@ export const tasksColumns: ColumnDef<T_Task>[] = [
   {
     accessorKey: 'title',
     header: ({ column }) => <SortableHeader column={column} label='Title' />,
+    filterFn: titleFilter,
     cell: ({ row }) => {
       const title = row.original.title;
 
@@ -193,6 +196,7 @@ export const tasksColumns: ColumnDef<T_Task>[] = [
   {
     accessorKey: 'status',
     header: 'Status',
+    filterFn: statusFilter,
     cell: ({ row }) => {
       const status = row.getValue('status') as keyof typeof statusIcns;
       const Icon = statusIcns[status];
@@ -210,6 +214,7 @@ export const tasksColumns: ColumnDef<T_Task>[] = [
   {
     accessorKey: 'priority',
     header: 'Priority',
+    filterFn: priorityFilter,
 
     cell: ({ row }) => {
       const priority = row.original.priority as keyof typeof priorityIcns;

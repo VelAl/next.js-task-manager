@@ -21,13 +21,19 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { useSearchQueryStore } from '@/hooks';
+import {
+  usePrioritiesStore,
+  useSearchQueryStore,
+  useStatusesStore,
+} from '@/hooks';
 
-import { titleFilter } from '../filters';
+import { priorityFilter, statusFilter, titleFilter } from '../filters';
 
 declare module '@tanstack/table-core' {
   interface FilterFns {
     titleFilter: FilterFn<T_Task>;
+    statusFilter: FilterFn<T_Task>;
+    priorityFilter: FilterFn<T_Task>;
   }
 }
 
@@ -41,6 +47,8 @@ export function TasksTable<TData, TValue>({
   data,
 }: DataTableProps<TData, TValue>) {
   const { searchQuery } = useSearchQueryStore(); // zustand
+  const { selectedStatuses } = useStatusesStore(); // zustand
+  const { selectedPriorities } = usePrioritiesStore(); // zustand
 
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 
@@ -49,12 +57,13 @@ export function TasksTable<TData, TValue>({
     columns,
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
-
     onColumnFiltersChange: setColumnFilters,
 
-    state: { columnFilters },
+    state: {
+      columnFilters,
+    },
 
-    filterFns: { titleFilter },
+    filterFns: { titleFilter, statusFilter, priorityFilter },
   });
 
   useEffect(() => {
@@ -64,8 +73,16 @@ export function TasksTable<TData, TValue>({
       newFilters.push({ id: 'title', value: searchQuery });
     }
 
+    if (selectedPriorities.length) {
+      newFilters.push({ id: 'priority', value: selectedPriorities });
+    }
+
+    if (selectedStatuses.length) {
+      newFilters.push({ id: 'status', value: selectedStatuses });
+    }
+
     setColumnFilters(newFilters);
-  }, [searchQuery]);
+  }, [searchQuery, selectedPriorities, selectedStatuses]);
 
   return (
     <div className='overflow-hidden rounded-md border'>
@@ -88,7 +105,7 @@ export function TasksTable<TData, TValue>({
             </TableRow>
           ))}
         </TableHeader>
-        
+
         <TableBody>
           {table.getRowModel().rows?.length ? (
             table.getRowModel().rows.map((row) => (
