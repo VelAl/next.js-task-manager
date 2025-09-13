@@ -5,7 +5,7 @@ import { T_Task } from '@/app-types';
 export const statusFilter: FilterFn<T_Task> = (
   row,
   columnId,
-  filterValue: string[]
+  filterValue,
 ) => {
   const status: string = row.getValue(columnId);
   return filterValue.includes(status);

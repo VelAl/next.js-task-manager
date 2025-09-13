@@ -1,10 +1,10 @@
 import { create } from 'zustand';
 
-import { T_TaskStatus } from '@/app-types';
+import { E_TaskStatus } from '@/app-types';
 
 type T_StatusesState = {
-  selectedStatuses: T_TaskStatus[];
-  setSelectedStatuses: (statuses: T_TaskStatus[]) => void;
+  selectedStatuses: E_TaskStatus[];
+  setSelectedStatuses: (statuses: E_TaskStatus[]) => void;
 };
 
 export const useStatusesStore = create<T_StatusesState>((set) => ({

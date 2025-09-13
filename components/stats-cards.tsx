@@ -1,47 +1,67 @@
-import { FaCheckCircle, FaExclamationTriangle,FaTasks } from 'react-icons/fa';
+'use client';
 
-import { Card, CardContent,CardHeader, CardTitle } from './ui/card';
+import { FaCheckCircle, FaExclamationTriangle, FaTasks } from 'react-icons/fa';
 
-type T_SingleCardProps = {
+import { T_TasksCounts, useTasksCounts } from '@/hooks/useTasksCounts ';
+
+import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
+
+type T_StatOption = {
   title: string;
-  value: number;
+  key: keyof Pick<
+    T_TasksCounts,
+    'totalTasksCount' | 'completedTasksCount' | 'pendingTasksCount'
+  >;
   icon: React.ReactNode;
 };
 
-const stats: T_SingleCardProps[] = [
+const stats: T_StatOption[] = [
   {
     title: 'Total Tasks',
-    value: 120,
+    key: 'totalTasksCount',
     icon: <FaTasks className='text-blue-500' />,
   },
   {
     title: 'Completed Tasks',
-    value: 80,
+    key: 'completedTasksCount',
     icon: <FaCheckCircle className='text-green-500' />,
   },
   {
     title: 'Pending Tasks',
-    value: 40,
+    key: 'pendingTasksCount',
     icon: <FaExclamationTriangle className='text-yellow-500' />,
   },
 ];
 
 export const StatCards = () => {
+  const counts = useTasksCounts();
   return (
     <div className='grid grid-cols-3 max-sm:grid-cols-1 mt-7 gap-4 p-4'>
       {stats.map((stat, index) => (
-        <SingleCard key={index} {...stat} />
+        <StatCard
+          icon={stat.icon}
+          key={index}
+          title={stat.title}
+          value={counts[stat.key]}
+        />
       ))}
     </div>
   );
 };
 
-const SingleCard = ({ title, value, icon }: T_SingleCardProps) => (
+type T_StatCardProps = {
+  title: string;
+  value: number;
+  icon: React.ReactNode;
+};
+
+const StatCard = ({ title, value, icon }: T_StatCardProps) => (
   <Card className='pt-4 flex flex-col gap-2 shadow-none'>
     <CardHeader className='flex justify-between'>
       <CardTitle>{title}</CardTitle>
       {icon}
     </CardHeader>
+
     <CardContent className='text-2xl font-bold'>{value}</CardContent>
   </Card>
 );

@@ -4,7 +4,7 @@ import { GoPlusCircle } from 'react-icons/go';
 
 import { toast } from 'sonner';
 
-import { T_TaskStatus } from '@/app-types';
+import { E_TaskStatus } from '@/app-types';
 import { statuses } from '@/constants';
 import { useTasksCounts } from '@/hooks';
 import { useStatusesStore } from '@/hooks/useStatusStore';
@@ -25,7 +25,6 @@ import { Separator } from '../../ui/separator';
 
 import { options } from './helpers';
 
-
 export const StatusDropDown = () => {
   const counts = useTasksCounts();
 
@@ -34,16 +33,16 @@ export const StatusDropDown = () => {
   const { selectedStatuses, setSelectedStatuses } = useStatusesStore();
 
   const updateSelection = (label: string) => {
-    const priority = label as T_TaskStatus;
+    const status = label as E_TaskStatus;
 
-    if (!statuses.includes(priority)) {
+    if (!statuses.includes(status)) {
       toast.error('Invalid status selected');
       return;
     }
 
-    const newStatuses = selectedStatuses.includes(priority)
-      ? selectedStatuses.filter((p) => p !== priority)
-      : [...selectedStatuses, priority];
+    const newStatuses = selectedStatuses.includes(status)
+      ? selectedStatuses.filter((p) => p !== status)
+      : [...selectedStatuses, status];
 
     setSelectedStatuses(newStatuses);
   };

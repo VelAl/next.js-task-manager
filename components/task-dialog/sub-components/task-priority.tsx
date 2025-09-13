@@ -22,7 +22,7 @@ type Priority = {
   icon: IconType;
 };
 
-const statuses: Priority[] = [
+const priorityOptions: Priority[] = [
   { value: 'Low', icon: IoArrowDown },
   { value: 'Medium', icon: IoArrowBack },
   { value: 'High', icon: IoMdArrowUp },
@@ -39,29 +39,29 @@ export const TaskPriority = () => {
         defaultValue='Low'
         render={({ field }) => {
           return ( */}
-            <Select
-              // value={field.value}
-              // onValueChange={(value: T_TaskFormData['priority']) => {
-              //   field.onChange(value);
-              // }}
-            >
-              <SelectTrigger className='w-full h-11'>
-                <SelectValue placeholder='Select a status...' />
-              </SelectTrigger>
-              <SelectContent className='poppins'>
-                <SelectGroup>
-                  {statuses.map((status, index) => (
-                    <SelectItem key={index} value={status.value}>
-                      <div className='flex items-center gap-2'>
-                        <status.icon size={15} />
-                        <span>{status.value}</span>
-                      </div>
-                    </SelectItem>
-                  ))}
-                </SelectGroup>
-              </SelectContent>
-            </Select>
-          {/* );
+      <Select
+      // value={field.value}
+      // onValueChange={(value: T_TaskFormData['priority']) => {
+      //   field.onChange(value);
+      // }}
+      >
+        <SelectTrigger className='w-full h-11'>
+          <SelectValue placeholder='Select a status...' />
+        </SelectTrigger>
+        <SelectContent className='poppins'>
+          <SelectGroup>
+            {priorityOptions.map((status, index) => (
+              <SelectItem key={index} value={status.value}>
+                <div className='flex items-center gap-2'>
+                  <status.icon size={15} />
+                  <span>{status.value}</span>
+                </div>
+              </SelectItem>
+            ))}
+          </SelectGroup>
+        </SelectContent>
+      </Select>
+      {/* );
         }}
       /> */}
     </div>

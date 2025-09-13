@@ -8,18 +8,18 @@ import {
   XCircle,
 } from 'lucide-react';
 
-import { T_TaskStatus } from "@/app-types";
+import { E_TaskStatus } from '@/app-types';
 
 type T_StatusOption = {
-  value: T_TaskStatus;
+  value: E_TaskStatus;
   label: string;
   icon: IconType;
 };
 
 export const options: T_StatusOption[] = [
-  { value: 'Backlog', label: 'Backlog', icon: HelpCircle },
-  { value: 'To Do', label: 'To Do', icon: Circle },
-  { value: 'In Progress', label: 'In Progress', icon: ArrowUpCircle },
-  { value: 'Done', label: 'Done', icon: CheckCircle2 },
-  { value: 'Canceled', label: 'Canceled', icon: XCircle },
+  { value: E_TaskStatus.Backlog, label: 'Backlog', icon: HelpCircle },
+  { value: E_TaskStatus.ToDo, label: 'To Do', icon: Circle },
+  { value: E_TaskStatus.InProgress, label: 'In Progress', icon: ArrowUpCircle },
+  { value: E_TaskStatus.Done, label: 'Done', icon: CheckCircle2 },
+  { value: E_TaskStatus.Canceled, label: 'Canceled', icon: XCircle },
 ] as const;

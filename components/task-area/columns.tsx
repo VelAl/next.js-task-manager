@@ -7,7 +7,6 @@ import { IoArrowBack, IoArrowDown, IoArrowUp } from 'react-icons/io5';
 import { Column, ColumnDef } from '@tanstack/react-table';
 import {
   ArrowUpCircle,
-  ArrowUpDown,
   CheckCircle,
   Circle,
   HelpCircle,
@@ -59,12 +58,6 @@ type T_SortableHeaderProps = {
   column: Column<T_Task, unknown>;
   label: string;
 };
-
-const sortIcns = {
-  asc: IoMdArrowUp,
-  desc: IoMdArrowDown,
-  false: ArrowUpDown,
-} as const;
 
 const SortableHeader = ({ column, label }: T_SortableHeaderProps) => {
   const isSorted = column.getIsSorted(); // "asc" | "desc" | false

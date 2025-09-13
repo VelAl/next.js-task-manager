@@ -1,16 +1,39 @@
 import { useMemo } from 'react';
 
-import { T_Priority, T_Task, T_TaskStatus } from '@/app-types';
-import { tasks } from '@/data-mocked/tasks-data';
+import { E_TaskStatus, T_Priority, T_Task } from '@/app-types';
 
-const getTasksCounts = (tasks: T_Task[]) =>
+import { useTasksDataStore } from './useTasksStore';
+
+export type T_TasksCounts = { [key in T_Priority | E_TaskStatus]?: number } & {
+  totalTasksCount: number;
+  completedTasksCount: number;
+  pendingTasksCount: number;
+};
+
+const getTasksCounts = (tasks: T_Task[], totals: T_TasksCounts) =>
   tasks.reduce((acc, task) => {
     acc[task.priority] = (acc[task.priority] || 0) + 1;
     acc[task.status] = (acc[task.status] || 0) + 1;
 
+    if (task.status === 'Done') {
+      totals.completedTasksCount += 1;
+    } else if (task.status === 'In Progress' || task.status === 'To Do') {
+      totals.pendingTasksCount += 1;
+    }
+
     return acc;
-  }, {} as { [key in T_Priority | T_TaskStatus]: number });
+  }, totals);
 
 export const useTasksCounts = () => {
-  return useMemo(() => getTasksCounts(tasks), [tasks]);
+  const { tasks } = useTasksDataStore();
+
+  return useMemo<T_TasksCounts>(() => {
+    const emptyTotals = {
+      totalTasksCount: tasks?.length || 0,
+      completedTasksCount: 0,
+      pendingTasksCount: 0,
+    };
+
+    return tasks ? getTasksCounts(tasks, emptyTotals) : emptyTotals;
+  }, [tasks]);
 };

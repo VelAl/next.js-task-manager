@@ -10,7 +10,7 @@ import {
   XCircle,
 } from 'lucide-react';
 
-import { T_Task } from '@/app-types';
+import { E_TaskStatus } from '@/app-types';
 import {
   Select,
   SelectContent,
@@ -22,17 +22,17 @@ import {
 
 // import { T_TaskFormData } from '../task-dialog-schema';
 
-type Status = {
-  value: T_Task['status'];
+type T_StatusOption = {
+  value: E_TaskStatus;
   icon: LucideIcon;
 };
 
-const statuses: Status[] = [
-  { value: 'Backlog', icon: HelpCircle },
-  { value: 'To Do', icon: Circle },
-  { value: 'In Progress', icon: ArrowUpCircle },
-  { value: 'Done', icon: CheckCircle2 },
-  { value: 'Canceled', icon: XCircle },
+const statusesOptions: T_StatusOption[] = [
+  { value: E_TaskStatus.Backlog, icon: HelpCircle },
+  { value: E_TaskStatus.ToDo, icon: Circle },
+  { value: E_TaskStatus.InProgress, icon: ArrowUpCircle },
+  { value: E_TaskStatus.Done, icon: CheckCircle2 },
+  { value: E_TaskStatus.Canceled, icon: XCircle },
 ] as const;
 
 export const TaskStatus = () => {
@@ -46,29 +46,29 @@ export const TaskStatus = () => {
         defaultValue='Backlog'
         render={({ field }) => {
           return ( */}
-            <Select
-              // value={field.value}
-              // onValueChange={(value: T_TaskFormData['status']) => {
-              //   field.onChange(value);
-              // }}
-            >
-              <SelectTrigger className='w-full h-11'>
-                <SelectValue placeholder='Select a status...' />
-              </SelectTrigger>
-              <SelectContent className='poppins'>
-                <SelectGroup>
-                  {statuses.map((status) => (
-                    <SelectItem key={status.value} value={status.value}>
-                      <div className='flex items-center gap-2'>
-                        <status.icon size={15} />
-                        <span>{status.value}</span>
-                      </div>
-                    </SelectItem>
-                  ))}
-                </SelectGroup>
-              </SelectContent>
-            </Select>
-          {/* );
+      <Select
+      // value={field.value}
+      // onValueChange={(value: T_TaskFormData['status']) => {
+      //   field.onChange(value);
+      // }}
+      >
+        <SelectTrigger className='w-full h-11'>
+          <SelectValue placeholder='Select a status...' />
+        </SelectTrigger>
+        <SelectContent className='poppins'>
+          <SelectGroup>
+            {statusesOptions.map((status) => (
+              <SelectItem key={status.value} value={status.value}>
+                <div className='flex items-center gap-2'>
+                  <status.icon size={15} />
+                  <span>{status.value}</span>
+                </div>
+              </SelectItem>
+            ))}
+          </SelectGroup>
+        </SelectContent>
+      </Select>
+      {/* );
         }}
       /> */}
     </div>
