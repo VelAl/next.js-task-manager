@@ -2,11 +2,12 @@
 import { useState } from 'react';
 import { GoPlusCircle } from 'react-icons/go';
 
+import { Table } from '@tanstack/react-table';
 import { toast } from 'sonner';
 
 import { T_Priority } from '@/app-types';
 import { priorities } from '@/constants';
-import { usePrioritiesStore, useTasksCounts } from '@/hooks';
+import { useTasksCounts } from '@/hooks';
 
 import { Badge } from '../../ui/badge';
 import { Button } from '../../ui/button';
@@ -24,15 +25,17 @@ import { Separator } from '../../ui/separator';
 
 import { options } from './helpers';
 
-export const PriorityDropDown = () => {
+export const PriorityDropDown = <T,>({ table }: { table: Table<T> }) => {
   const counts = useTasksCounts();
   const [isOpen, setIsOpen] = useState(false);
+  const { setColumnFilters, getState } = table;
 
-  const { selectedPriorities, setSelectedPriorities } = usePrioritiesStore();
+  const selectedPriorities =
+    (getState().columnFilters.find((f) => f.id === 'priority')
+      ?.value as T_Priority[]) || [];
 
   const updateSelection = (label: string) => {
     const priority = label as T_Priority;
-
     if (!priorities.includes(priority)) {
       toast.error('Invalid priority selected');
       return;
@@ -42,7 +45,13 @@ export const PriorityDropDown = () => {
       ? selectedPriorities.filter((p) => p !== priority)
       : [...selectedPriorities, priority];
 
-    setSelectedPriorities(newPriorities);
+    setColumnFilters((prev) => {
+      const otherFilters = prev.filter((f) => f.id !== 'priority');
+      if (newPriorities.length) {
+        return [...otherFilters, { id: 'priority', value: newPriorities }];
+      }
+      return otherFilters;
+    });
   };
 
   return (

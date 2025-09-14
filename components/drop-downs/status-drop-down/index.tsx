@@ -2,12 +2,12 @@
 import { useState } from 'react';
 import { GoPlusCircle } from 'react-icons/go';
 
+import { Table } from '@tanstack/react-table';
 import { toast } from 'sonner';
 
 import { E_TaskStatus } from '@/app-types';
 import { statuses } from '@/constants';
 import { useTasksCounts } from '@/hooks';
-import { useStatusesStore } from '@/hooks/useStatusStore';
 
 import { Badge } from '../../ui/badge';
 import { Button } from '../../ui/button';
@@ -25,12 +25,14 @@ import { Separator } from '../../ui/separator';
 
 import { options } from './helpers';
 
-export const StatusDropDown = () => {
+export const StatusDropDown = <T,>({ table }: { table: Table<T> }) => {
   const counts = useTasksCounts();
-
   const [isOpen, setIsOpen] = useState(false);
+  const { setColumnFilters, getState } = table;
 
-  const { selectedStatuses, setSelectedStatuses } = useStatusesStore();
+  const selectedStatuses =
+    (getState().columnFilters.find((f) => f.id === 'status')
+      ?.value as E_TaskStatus[]) || [];
 
   const updateSelection = (label: string) => {
     const status = label as E_TaskStatus;
@@ -41,10 +43,16 @@ export const StatusDropDown = () => {
     }
 
     const newStatuses = selectedStatuses.includes(status)
-      ? selectedStatuses.filter((p) => p !== status)
+      ? selectedStatuses.filter((s) => s !== status)
       : [...selectedStatuses, status];
 
-    setSelectedStatuses(newStatuses);
+    setColumnFilters((prev) => {
+      const otherFilters = prev.filter((f) => f.id !== 'status');
+      if (newStatuses.length) {
+        return [...otherFilters, { id: 'status', value: newStatuses }];
+      }
+      return otherFilters;
+    });
   };
 
   return (

@@ -1,10 +1,10 @@
 'use client';
 
-import { useState } from 'react';
 import { BiColumns } from 'react-icons/bi';
 
-import { DropdownMenuCheckboxItemProps } from '@radix-ui/react-dropdown-menu';
+import { Table } from '@tanstack/react-table';
 
+import { T_Task } from '@/app-types';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -15,12 +15,19 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 
-type Checked = DropdownMenuCheckboxItemProps['checked'];
+import { hidableColumnsIdsToTitles } from '../task-area/columns';
 
-export const ViewColumnsDropdown = () => {
-  const [showStatusBar, setShowStatusBar] = useState<Checked>(true);
-  const [showActivityBar, setShowActivityBar] = useState<Checked>(false);
-  const [showPanel, setShowPanel] = useState<Checked>(false);
+export const ViewColumnsDropdown = ({ table }: { table: Table<T_Task> }) => {
+  const columnsWithHiding = table
+    .getAllColumns()
+    .filter((column) => column.getCanHide());
+
+  const handleVisibilityChange = (columnId: string, visibility: boolean) => {
+    table.setColumnVisibility((prev) => ({
+      ...prev,
+      [columnId]: visibility,
+    }));
+  };
 
   return (
     <DropdownMenu>
@@ -31,30 +38,22 @@ export const ViewColumnsDropdown = () => {
         </Button>
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent className='w-56'>
+      <DropdownMenuContent className='w-56' >
         <DropdownMenuLabel>Toggle Columns</DropdownMenuLabel>
 
         <DropdownMenuSeparator />
 
-        <DropdownMenuCheckboxItem
-          checked={showStatusBar}
-          onCheckedChange={setShowStatusBar}
-        >
-          Title
-        </DropdownMenuCheckboxItem>
-
-        <DropdownMenuCheckboxItem
-          checked={showActivityBar}
-          onCheckedChange={setShowActivityBar}
-        >
-          Status
-        </DropdownMenuCheckboxItem>
-        <DropdownMenuCheckboxItem
-          checked={showPanel}
-          onCheckedChange={setShowPanel}
-        >
-          Priority
-        </DropdownMenuCheckboxItem>
+        {columnsWithHiding.map((column) => (
+          <DropdownMenuCheckboxItem
+            checked={column.getIsVisible()}
+            key={column.id}
+            onCheckedChange={(checked) =>
+              handleVisibilityChange(column.id, checked)
+            }
+          >
+            {hidableColumnsIdsToTitles[column.id] || column.id}
+          </DropdownMenuCheckboxItem>
+        ))}
       </DropdownMenuContent>
     </DropdownMenu>
   );

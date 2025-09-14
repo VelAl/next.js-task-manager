@@ -2,23 +2,19 @@
 
 import { IoCloseSharp } from 'react-icons/io5';
 
-import { usePrioritiesStore, useStatusesStore } from '@/hooks';
+import { Table } from '@tanstack/react-table';
 
 import { Button } from '../ui/button';
 
-export const ResetFiltersBtn = () => {
-  const { selectedPriorities, setSelectedPriorities } = usePrioritiesStore();
-  const { selectedStatuses, setSelectedStatuses } = useStatusesStore();
+export const ResetFiltersBtn = <T,>({ table }: { table: Table<T> }) => {
+  const { setColumnFilters, getState } = table;
 
-  if (!selectedPriorities.length && !selectedStatuses.length) return null;
+  if (!getState().columnFilters.length) return null;
 
   return (
     <Button
       className='h-10'
-      onClick={() => {
-        setSelectedPriorities([]);
-        setSelectedStatuses([]);
-      }}
+      onClick={() => setColumnFilters([])}
       variant={'ghost'}
     >
       <span>Reset</span>

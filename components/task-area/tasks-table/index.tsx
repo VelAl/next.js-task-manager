@@ -1,16 +1,7 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-
-import {
-  ColumnDef,
-  ColumnFiltersState,
-  FilterFn,
-  flexRender,
-  getCoreRowModel,
-  getFilteredRowModel,
-  useReactTable,
-} from '@tanstack/react-table';
+import { ColumnDef, FilterFn, flexRender } from '@tanstack/react-table';
+import { type Table as T_Table } from '@tanstack/react-table';
 
 import { T_Task } from '@/app-types';
 import {
@@ -21,13 +12,6 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import {
-  usePrioritiesStore,
-  useSearchQueryStore,
-  useStatusesStore,
-} from '@/hooks';
-
-import { priorityFilter, statusFilter, titleFilter } from '../filters';
 
 declare module '@tanstack/table-core' {
   interface FilterFns {
@@ -37,53 +21,12 @@ declare module '@tanstack/table-core' {
   }
 }
 
-interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[];
-  data: TData[];
+interface DataTableProps<TData> {
+  columns: ColumnDef<T_Task>[];
+  table: T_Table<TData>;
 }
 
-export function TasksTable<TData, TValue>({
-  columns,
-  data,
-}: DataTableProps<TData, TValue>) {
-  const { searchQuery } = useSearchQueryStore(); // zustand
-  const { selectedStatuses } = useStatusesStore(); // zustand
-  const { selectedPriorities } = usePrioritiesStore(); // zustand
-
-  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
-
-  const table = useReactTable({
-    data,
-    columns,
-    getCoreRowModel: getCoreRowModel(),
-    getFilteredRowModel: getFilteredRowModel(),
-    onColumnFiltersChange: setColumnFilters,
-
-    state: {
-      columnFilters,
-    },
-
-    filterFns: { titleFilter, statusFilter, priorityFilter },
-  });
-
-  useEffect(() => {
-    const newFilters: ColumnFiltersState = [];
-
-    if (searchQuery) {
-      newFilters.push({ id: 'title', value: searchQuery });
-    }
-
-    if (selectedPriorities.length) {
-      newFilters.push({ id: 'priority', value: selectedPriorities });
-    }
-
-    if (selectedStatuses.length) {
-      newFilters.push({ id: 'status', value: selectedStatuses });
-    }
-
-    setColumnFilters(newFilters);
-  }, [searchQuery, selectedPriorities, selectedStatuses]);
-
+export function TasksTable<TData>({ columns, table }: DataTableProps<TData>) {
   return (
     <div className='overflow-hidden rounded-md border'>
       <Table>

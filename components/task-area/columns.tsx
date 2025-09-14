@@ -4,9 +4,10 @@ import { GrHide } from 'react-icons/gr';
 import { IoMdArrowDown, IoMdArrowUp } from 'react-icons/io';
 import { IoArrowBack, IoArrowDown, IoArrowUp } from 'react-icons/io5';
 
-import { Column, ColumnDef } from '@tanstack/react-table';
+import { Column, ColumnDef, SortDirection } from '@tanstack/react-table';
 import {
   ArrowUpCircle,
+  ArrowUpDown,
   CheckCircle,
   Circle,
   HelpCircle,
@@ -59,8 +60,17 @@ type T_SortableHeaderProps = {
   label: string;
 };
 
+const getSortIcn = (direction: false | SortDirection) =>
+  direction === 'asc'
+    ? IoMdArrowUp
+    : direction === 'desc'
+    ? IoMdArrowDown
+    : ArrowUpDown;
+
 const SortableHeader = ({ column, label }: T_SortableHeaderProps) => {
   const isSorted = column.getIsSorted(); // "asc" | "desc" | false
+
+  const SortingIcon = getSortIcn(isSorted);
 
   return (
     <DropdownMenu>
@@ -71,6 +81,8 @@ const SortableHeader = ({ column, label }: T_SortableHeaderProps) => {
             flex items-start py=[14px] select-none cursor-pointer p-2 gap-1`}
         >
           {label}
+
+          <SortingIcon className='ml-1 mt-1 h-4 w-4 opacity-50' />
         </div>
       </DropdownMenuTrigger>
 
@@ -85,12 +97,19 @@ const SortableHeader = ({ column, label }: T_SortableHeaderProps) => {
           Desc
         </DropdownMenuItem>
 
-        <DropdownMenuSeparator />
-
-        <DropdownMenuItem onClick={() => column.toggleSorting(false)}>
-          <GrHide className='mr-2' />
-          Hide
-        </DropdownMenuItem>
+        {label !== 'Title' && (
+          <>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem
+              onClick={() => {
+                column.toggleVisibility();
+              }}
+            >
+              <GrHide className='mr-2 size-7 text-opacity-90' />
+              Hide
+            </DropdownMenuItem>
+          </>
+        )}
       </DropdownMenuContent>
     </DropdownMenu>
   );
@@ -100,6 +119,10 @@ export const tasksColumns: ColumnDef<T_Task>[] = [
   //_______SELECT_ROW(S)_CHECKBOX________________________________________
   {
     id: 'select',
+    enableHiding: false,
+    enableSorting: false,
+    enableColumnFilter: false,
+
     header: ({ table }) => (
       <Checkbox
         aria-label='Select all'
@@ -118,14 +141,17 @@ export const tasksColumns: ColumnDef<T_Task>[] = [
         onCheckedChange={(value) => row.toggleSelected(!!value)}
       />
     ),
-    enableSorting: false,
-    enableHiding: false,
   },
 
   //_______TASK_ID_______________________________________________________
   {
+    id: 'taskId',
     header: 'Task ID',
     accessorKey: 'taskId',
+
+    enableHiding: true,
+    enableSorting: false,
+    enableColumnFilter: false,
   },
 
   //_______IS_FAVORITE_STAR______________________________________________
@@ -143,6 +169,10 @@ export const tasksColumns: ColumnDef<T_Task>[] = [
         </div>
       );
     },
+
+    enableHiding: false,
+    enableSorting: false,
+    enableColumnFilter: false,
   },
 
   //_______TITLE_________________________________________________________
@@ -150,6 +180,10 @@ export const tasksColumns: ColumnDef<T_Task>[] = [
     accessorKey: 'title',
     header: ({ column }) => <SortableHeader column={column} label='Title' />,
     filterFn: titleFilter,
+
+    enableHiding: false,
+    enableSorting: true,
+    enableColumnFilter: true,
     cell: ({ row }) => {
       const title = row.original.title;
 
@@ -163,8 +197,9 @@ export const tasksColumns: ColumnDef<T_Task>[] = [
 
   //_______TYPE__________________________________________________________
   {
+    id: 'type',
     accessorKey: 'type',
-    header: 'Type',
+    header: ({ column }) => <SortableHeader column={column} label='Type' />,
     cell: ({ row }) => {
       const type = row.getValue('type') as T_Task['type'];
       return (
@@ -183,12 +218,16 @@ export const tasksColumns: ColumnDef<T_Task>[] = [
         </div>
       );
     },
+    enableHiding: true,
+    enableSorting: true,
+    enableColumnFilter: true,
   },
 
   //_______STATUS________________________________________________________
   {
+    id: 'status',
     accessorKey: 'status',
-    header: 'Status',
+    header: ({ column }) => <SortableHeader column={column} label='Status' />,
     filterFn: statusFilter,
     cell: ({ row }) => {
       const status = row.getValue('status') as keyof typeof statusIcns;
@@ -201,12 +240,17 @@ export const tasksColumns: ColumnDef<T_Task>[] = [
         </div>
       );
     },
+
+    enableHiding: true,
+    enableSorting: true,
+    enableColumnFilter: true,
   },
 
   //_______PRIORITY______________________________________________________
   {
+    id: 'priority',
     accessorKey: 'priority',
-    header: 'Priority',
+    header: ({ column }) => <SortableHeader column={column} label='Priority' />,
     filterFn: priorityFilter,
 
     cell: ({ row }) => {
@@ -220,19 +264,35 @@ export const tasksColumns: ColumnDef<T_Task>[] = [
         </div>
       );
     },
+    enableHiding: true,
   },
 
   //_______CREATED_AT____________________________________________________
   {
+    id: 'created At',
     accessorKey: 'createdAt',
     header: ({ column }) => (
       <SortableHeader column={column} label='Created At' />
     ),
     cell: ({ row }) => (
-      <span className='font-mono'>{formatDate(row.getValue('createdAt'))}</span>
+      <span className='font-mono'>
+        {formatDate(row.getValue('created At'))}
+      </span>
     ),
+    enableHiding: true,
   },
 
   //_______ACTIONS_______________________________________________________
-  { id: 'actions' },
+  {
+    id: 'actions',
+    enableHiding: false,
+  },
 ];
+
+export const hidableColumnsIdsToTitles: { [id: string]: string } = {
+  taskId: 'Task ID',
+  type: 'Type',
+  status: 'Status',
+  priority: 'Priority',
+  'created At': 'Created At',
+};
