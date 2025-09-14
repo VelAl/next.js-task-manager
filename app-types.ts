@@ -16,6 +16,6 @@ export type T_Task = {
   type: T_TaskType;
   priority: T_Priority;
   status: E_TaskStatus;
-  taskId: string;
+  taskId: number;
   title: string;
 };

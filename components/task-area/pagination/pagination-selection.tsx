@@ -1,3 +1,5 @@
+import { Table } from '@tanstack/react-table';
+
 import {
   Select,
   SelectContent,
@@ -6,14 +8,14 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 
-export const PaginationSelection = () => {
+export const PaginationSelection = <T,>({ table }: { table: Table<T> }) => {
   return (
     <div className='flex items-center gap-2'>
       <span className='text-sm font-medium'>Rows per page</span>
 
       <Select
-      // value={PaginationSelection.pageSize.toString()}
-      // onValueChange={(value) => setPagination((prev) => ({ ...prev, pageSize: Number(value) }))}
+        onValueChange={(value) => table.setPageSize(+value)}
+        value={table.getState().pagination.pageSize.toString()}
       >
         <SelectTrigger className='w-[90px]'>
           <SelectValue placeholder='10' />

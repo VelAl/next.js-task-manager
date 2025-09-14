@@ -6,6 +6,7 @@ import {
   ColumnFiltersState,
   getCoreRowModel,
   getFilteredRowModel,
+  getPaginationRowModel,
   useReactTable,
 } from '@tanstack/react-table';
 
@@ -36,6 +37,8 @@ export const TasksArea = () => {
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     onColumnFiltersChange: setColumnFilters,
+    getPaginationRowModel: getPaginationRowModel(),
+    getRowId: ({ taskId }) => taskId.toString(),
 
     state: {
       columnFilters,
@@ -47,8 +50,6 @@ export const TasksArea = () => {
       priorityFilter,
     },
   });
-
-  console.log('table ===>', table.getState());
 
   return (
     <div className='px-4 mt-2'>
@@ -73,7 +74,7 @@ export const TasksArea = () => {
         </CardContent>
 
         <CardFooter>
-          <PaginationArea />
+          <PaginationArea table={table} />
         </CardFooter>
       </Card>
     </div>
