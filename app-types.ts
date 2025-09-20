@@ -19,3 +19,8 @@ export type T_Task = {
   taskId: number;
   title: string;
 };
+
+export type T_ActionResultStatus = {
+  toastType: 'success' | 'error';
+  message: string;
+};

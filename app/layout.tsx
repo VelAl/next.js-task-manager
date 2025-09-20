@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
 
 import { AppThemeProvider } from '@/components/theme-provider';
+import { Toaster } from '@/components/ui/sonner';
 
 import './globals.css';
 
@@ -27,10 +28,11 @@ export default function RootLayout({
         <AppThemeProvider
           attribute='class'
           defaultTheme='system'
-          enableSystem
           disableTransitionOnChange
+          enableSystem
         >
           {children}
+          <Toaster richColors />
         </AppThemeProvider>
       </body>
     </html>

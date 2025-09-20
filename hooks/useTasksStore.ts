@@ -1,6 +1,7 @@
+import { ToastT } from 'sonner';
 import { create } from 'zustand';
 
-import { T_Task } from '@/app-types';
+import { T_ActionResultStatus, T_Task } from '@/app-types';
 import { tasks } from '@/data-mocked/tasks-data';
 
 export interface useTasksDataStoreInterface {
@@ -9,7 +10,7 @@ export interface useTasksDataStoreInterface {
 
   setSelectedTask: (task: T_Task | null) => void;
   setTasks: (tasks: T_Task[]) => void;
-  fetchTasks: () => Promise<void>;
+  setTaskIsFavorite: (task: T_Task) => T_ActionResultStatus;
   updateTasks: (
     tasks: T_Task[],
     operation?: string | undefined
@@ -31,20 +32,30 @@ export const useTasksDataStore = create<useTasksDataStoreInterface>((set) => ({
     set({ selectedTask });
   },
 
-  fetchTasks: async () => {
-    try {
-      console.log('fetched data');
+  setTaskIsFavorite: ({ taskId, isFavorite }: T_Task) => {
+    let type: T_ActionResultStatus['toastType'] = 'error';
 
-      await new Promise<void>((resolve) => {
-        setTimeout(() => {
-          set({ tasks });
-          resolve();
-        }, 1000);
+    set((state) => {
+      const updatedTasks = state.tasks?.map((task) => {
+        if (task.taskId === taskId) {
+          type = 'success';
+
+          return { ...task, isFavorite: !isFavorite };
+        } else {
+          return task;
+        }
       });
-    } catch (error) {
-      console.error('Failed to fetch tasks:', error);
-      set({ tasks: null });
-    }
+
+      return { tasks: updatedTasks || null };
+    });
+
+    return {
+      toastType: type,
+      message:
+        type === 'error'
+          ? `Task with ID ${taskId} not found!`
+          : 'The task was updated successfully!',
+    };
   },
 
   updateTasks: async (
@@ -61,9 +72,6 @@ export const useTasksDataStore = create<useTasksDataStoreInterface>((set) => ({
         break;
       case 'delete':
         successMessage = 'Task has been deleted successfully!';
-        break;
-      case 'favorite':
-        successMessage = 'Task is set as favorite successfully!';
         break;
       default:
         successMessage = 'Operation completed successfully!';

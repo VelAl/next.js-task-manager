@@ -17,6 +17,7 @@ import {
 
 import { T_Task } from '@/app-types';
 
+import { TaskActionsDropDown } from '../drop-downs/task-actions-drop-down';
 import { Badge } from '../ui/badge';
 import { Checkbox } from '../ui/checkbox';
 import {
@@ -270,16 +271,13 @@ export const tasksColumns: ColumnDef<T_Task>[] = [
 
   //_______CREATED_AT____________________________________________________
   {
-    
     id: 'createdAt',
     accessorKey: 'createdAt',
     header: ({ column }) => (
       <SortableHeader column={column} label='Created At' />
     ),
     cell: ({ row }) => (
-      <span className='font-mono'>
-        {formatDate(row.getValue('createdAt'))}
-      </span>
+      <span className='font-mono'>{formatDate(row.getValue('createdAt'))}</span>
     ),
     enableHiding: true,
   },
@@ -288,6 +286,8 @@ export const tasksColumns: ColumnDef<T_Task>[] = [
   {
     id: 'actions',
     enableHiding: false,
+
+    cell: ({ row }) => <TaskActionsDropDown task={row.original} />,
   },
 ];
 
@@ -296,5 +296,5 @@ export const hidableColumnsIdsToTitles: { [id: string]: string } = {
   type: 'Type',
   status: 'Status',
   priority: 'Priority',
-  'createdAt': 'Created At',
+  createdAt: 'Created At',
 };
