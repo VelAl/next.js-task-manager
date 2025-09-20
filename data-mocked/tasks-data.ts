@@ -38,7 +38,7 @@ export const tasks: T_Task[] = [
     isFavorite: false,
   },
   {
-  taskId: 49215,
+  taskId: 49216,
     title: 'Fix bug in payment gateway',
     type: 'Bug',
     createdAt: '2023-08-01T10:30:00Z',
@@ -47,7 +47,7 @@ export const tasks: T_Task[] = [
     isFavorite: true,
   },
   {
-  taskId: 82041,
+  taskId: 72941,
     title: 'Refactor codebase',
     type: 'Feature',
     createdAt: '2023-08-02T11:15:00Z',
@@ -56,7 +56,7 @@ export const tasks: T_Task[] = [
     isFavorite: false,
   },
   {
-  taskId: 12058,
+  taskId: 42057,
     title: 'Update terms of service',
     type: 'Documentation',
     createdAt: '2023-08-05T16:40:00Z',
@@ -65,7 +65,7 @@ export const tasks: T_Task[] = [
     isFavorite: false,
   },
   {
-  taskId: 58120,
+  taskId: 181933,
     title: 'Fix broken links on homepage',
     type: 'Bug',
     createdAt: '2023-08-06T07:55:00Z',
@@ -92,7 +92,7 @@ export const tasks: T_Task[] = [
     isFavorite: true,
   },
   {
-  taskId: 12095,
+  taskId: 15065,
     title: 'Integrate third-party API',
     type: 'Feature',
     createdAt: '2023-08-15T12:40:00Z',
@@ -101,7 +101,7 @@ export const tasks: T_Task[] = [
     isFavorite: false,
   },
   {
-  taskId: 58124,
+  taskId: 78724,
     title: 'Fix CSS issues on mobile',
     type: 'Bug',
     createdAt: '2023-08-17T09:10:00Z',
@@ -110,7 +110,7 @@ export const tasks: T_Task[] = [
     isFavorite: true,
   },
   {
-  taskId: 49210,
+  taskId: 47270,
     title: 'Review pull requests',
     type: 'Feature',
     createdAt: '2023-08-18T15:50:00Z',

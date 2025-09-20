@@ -177,6 +177,7 @@ export const tasksColumns: ColumnDef<T_Task>[] = [
 
   //_______TITLE_________________________________________________________
   {
+    id: 'title',
     accessorKey: 'title',
     header: ({ column }) => <SortableHeader column={column} label='Title' />,
     filterFn: titleFilter,
@@ -269,14 +270,15 @@ export const tasksColumns: ColumnDef<T_Task>[] = [
 
   //_______CREATED_AT____________________________________________________
   {
-    id: 'created At',
+    
+    id: 'createdAt',
     accessorKey: 'createdAt',
     header: ({ column }) => (
       <SortableHeader column={column} label='Created At' />
     ),
     cell: ({ row }) => (
       <span className='font-mono'>
-        {formatDate(row.getValue('created At'))}
+        {formatDate(row.getValue('createdAt'))}
       </span>
     ),
     enableHiding: true,
@@ -294,5 +296,5 @@ export const hidableColumnsIdsToTitles: { [id: string]: string } = {
   type: 'Type',
   status: 'Status',
   priority: 'Priority',
-  'created At': 'Created At',
+  'createdAt': 'Created At',
 };
