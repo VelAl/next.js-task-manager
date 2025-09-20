@@ -77,11 +77,11 @@ export const StatusDropDown = <T,>({ table }: { table: Table<T> }) => {
 
               <div className='flex items-center gap-2'>
                 {!selectedStatuses.length ? (
-                  <span className='text-gray-500'>Select priority</span>
+                  <span className='text-gray-500'>Select status</span>
                 ) : selectedStatuses.length <= 2 ? (
-                  selectedStatuses.map((priority) => (
-                    <Badge key={priority} variant='secondary'>
-                      {priority}
+                  selectedStatuses.map((status) => (
+                    <Badge key={status} variant='secondary'>
+                      {status}
                     </Badge>
                   ))
                 ) : (
