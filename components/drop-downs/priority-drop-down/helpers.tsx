@@ -2,16 +2,16 @@ import { IoMdArrowUp } from 'react-icons/io';
 import { IoArrowBack, IoArrowDown } from 'react-icons/io5';
 import { IconType } from 'react-icons/lib';
 
-import { T_Priority } from '@/app-types';
+import { E_TaskPriority } from '@/app-types';
 
-export type T_PriorityOption = {
-  value: T_Priority;
+export type E_PriorityOption = {
+  value: E_TaskPriority;
   label: string;
   icon: IconType;
 };
 
-export const options: T_PriorityOption[] = [
-  { value: 'Low', label: 'Low', icon: IoArrowDown },
-  { value: 'Medium', label: 'Medium', icon: IoArrowBack },
-  { value: 'High', label: 'High', icon: IoMdArrowUp },
+export const options: E_PriorityOption[] = [
+  { value: E_TaskPriority.Low, label: 'Low', icon: IoArrowDown },
+  { value: E_TaskPriority.Medium, label: 'Medium', icon: IoArrowBack },
+  { value: E_TaskPriority.High, label: 'High', icon: IoMdArrowUp },
 ] as const;

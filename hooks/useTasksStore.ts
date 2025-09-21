@@ -81,6 +81,12 @@ export const useTasksDataStore = create<useTasksDataStoreInterface>((set) => ({
     };
   },
 
+  copyTask: (task: T_Task) => {
+
+
+  },
+  
+
   updateTasks: async (
     updatedTasksArray: T_Task[],
     operation: string | undefined

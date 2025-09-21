@@ -5,7 +5,7 @@ import { GoPlusCircle } from 'react-icons/go';
 import { Table } from '@tanstack/react-table';
 import { toast } from 'sonner';
 
-import { T_Priority } from '@/app-types';
+import { E_TaskPriority } from '@/app-types';
 import { priorities } from '@/constants';
 import { useTasksCounts } from '@/hooks';
 
@@ -32,10 +32,10 @@ export const PriorityDropDown = <T,>({ table }: { table: Table<T> }) => {
 
   const selectedPriorities =
     (getState().columnFilters.find((f) => f.id === 'priority')
-      ?.value as T_Priority[]) || [];
+      ?.value as E_TaskPriority[]) || [];
 
   const updateSelection = (label: string) => {
-    const priority = label as T_Priority;
+    const priority = label as E_TaskPriority;
     if (!priorities.includes(priority)) {
       toast.error('Invalid priority selected');
       return;

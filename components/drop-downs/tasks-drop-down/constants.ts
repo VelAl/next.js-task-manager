@@ -1,6 +1,6 @@
 import { Copy, Edit2, Star } from 'lucide-react';
 
-import { T_TaskType } from '@/app-types';
+import { E_TaskType } from '@/app-types';
 
 import { T_MenuItemType } from './types';
 
@@ -25,8 +25,8 @@ export const MENU_ITEMS: T_MenuItemType[] = [
   },
 ];
 
-export const TASK_TYPE_LABELS: T_TaskType[] = [
-  'Bug',
-  'Feature',
-  'Documentation',
+export const TASK_TYPE_LABELS: E_TaskType[] = [
+  E_TaskType.Bug,
+  E_TaskType.Feature,
+  E_TaskType.Documentation,
 ] as const;

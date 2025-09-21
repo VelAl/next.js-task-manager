@@ -1,10 +1,10 @@
 import { useMemo } from 'react';
 
-import { E_TaskStatus, T_Priority, T_Task } from '@/app-types';
+import { E_TaskPriority, E_TaskStatus, T_Task } from '@/app-types';
 
 import { useTasksDataStore } from './useTasksStore';
 
-export type T_TasksCounts = { [key in T_Priority | E_TaskStatus]?: number } & {
+export type T_TasksCounts = { [key in E_TaskPriority | E_TaskStatus]?: number } & {
   totalTasksCount: number;
   completedTasksCount: number;
   pendingTasksCount: number;
