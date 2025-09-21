@@ -8,14 +8,15 @@ export const getTaskOptions = (
 ): {
   icon: LucideIcon;
   label: string;
-  action: (task: T_Task) => T_ActionResultStatus | undefined;
+  action: (task: T_Task) => T_ActionResultStatus | void;
   className?: string;
 }[] =>
   [
     {
       icon: Edit2,
       label: 'Edit',
-      action: (task) => undefined,
+      action: (task: T_Task) =>
+        useTasksDataStore.getState().setSelectedTask(task),
     },
     {
       icon: Copy,

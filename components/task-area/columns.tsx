@@ -17,7 +17,7 @@ import {
 
 import { T_Task } from '@/app-types';
 
-import { TaskActionsDropDown } from '../drop-downs/task-actions-drop-down';
+import { TaskActionsDropDown } from '../drop-downs';
 import { Badge } from '../ui/badge';
 import { Checkbox } from '../ui/checkbox';
 import {

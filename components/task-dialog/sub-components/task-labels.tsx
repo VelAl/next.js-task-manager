@@ -3,7 +3,6 @@ import { Controller, useFormContext } from 'react-hook-form';
 import { Label } from '@radix-ui/react-dropdown-menu';
 
 import { E_TaskType } from '@/app-types';
-import { TASK_TYPE_LABELS } from '@/components/drop-downs/tasks-drop-down/constants';
 import {
   Select,
   SelectContent,
@@ -13,6 +12,12 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { T_TaskFormData } from '@/lib/utils';
+
+export const TASK_TYPE_LABELS: E_TaskType[] = [
+  E_TaskType.Bug,
+  E_TaskType.Feature,
+  E_TaskType.Documentation,
+] as const;
 
 export const TaskType = () => {
   const { control } = useFormContext<T_TaskFormData>();

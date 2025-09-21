@@ -34,7 +34,7 @@ export const TaskActionsDropDown: React.FC<T_Props> = ({ task }) => {
             }`}
             key={item.label}
             onClick={() => {
-              const res: T_ActionResultStatus | undefined = item.action?.(task);
+              const res: T_ActionResultStatus | void = item.action?.(task);
 
               if (res) {
                 toast[res.toastType](res.message, {

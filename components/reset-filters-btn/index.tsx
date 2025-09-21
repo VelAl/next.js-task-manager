@@ -13,12 +13,12 @@ export const ResetFiltersBtn = <T,>({ table }: { table: Table<T> }) => {
 
   return (
     <Button
-      className='h-10'
+      className='h-10 bg-red-100'
       onClick={() => setColumnFilters([])}
       variant={'ghost'}
     >
       <span>Reset</span>
-      <IoCloseSharp />
+      <IoCloseSharp color='red' />
     </Button>
   );
 };

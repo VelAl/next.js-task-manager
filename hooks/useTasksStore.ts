@@ -21,6 +21,9 @@ export interface useTasksDataStoreInterface {
   setTaskIsFavorite: (task: T_Task) => T_ActionResultStatus;
   deleteTask: (task: T_Task) => T_ActionResultStatus;
   addTask: (task: T_TaskFormData) => T_ActionResultStatus;
+  updateTask: (
+    task: T_TaskFormData & Pick<T_Task, 'taskId'>
+  ) => T_ActionResultStatus;
 }
 
 export const useTasksDataStore = create<useTasksDataStoreInterface>((set) => ({
@@ -137,5 +140,47 @@ export const useTasksDataStore = create<useTasksDataStoreInterface>((set) => ({
       toastType: 'success',
       message: `Task added successfully! New Task ID: ${newTask.taskId}`,
     } as T_ActionResultStatus;
+  },
+
+  updateTask: (task) => {
+    const validatedTask = TaskFormSchema.safeParse(task);
+
+    if (!validatedTask.success) {
+      return {
+        toastType: 'error',
+        message: `Invalid task data! ${validatedTask.error.message}`,
+      } as T_ActionResultStatus;
+    }
+
+    let toastType: T_ActionResultStatus['toastType'] = 'error';
+
+    set((state) => {
+      if (!state.tasks) return {};
+
+      const updatedTasks = structuredClone(state.tasks);
+
+      const ind = state.tasks.findIndex((t) => t.taskId === task.taskId);
+
+      if (ind === -1) {
+        return {};
+      } else {
+        updatedTasks[ind] = {
+          ...updatedTasks[ind],
+          ...task,
+        };
+
+        toastType = 'success';
+      }
+
+      return { tasks: updatedTasks };
+    });
+
+    return {
+      toastType,
+      message:
+        toastType === 'error'
+          ? `Task with ID ${task.taskId} not found!`
+          : `The Task ID: ${task.taskId} was updated successfully!`,
+    };
   },
 }));
