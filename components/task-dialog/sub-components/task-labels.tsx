@@ -1,7 +1,8 @@
-// import { Controller, useFormContext } from 'react-hook-form';
+import { Controller, useFormContext } from 'react-hook-form';
 
 import { Label } from '@radix-ui/react-dropdown-menu';
 
+import { E_TaskType } from '@/app-types';
 import { TASK_TYPE_LABELS } from '@/components/drop-downs/tasks-drop-down/constants';
 import {
   Select,
@@ -11,25 +12,25 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-
-// import { T_TaskFormData } from '../task-dialog-schema';
+import { T_TaskFormData } from '@/lib/utils';
 
 export const TaskType = () => {
-  // const { control } = useFormContext<T_TaskFormData>();
+  const { control } = useFormContext<T_TaskFormData>();
+
   return (
     <div className='flex flex-col gap-2'>
       <Label className='opacity-75 text-sm font-medium'>Task Type</Label>
-      {/* <Controller
-        name='type'
-        defaultValue='Bug'
+      <Controller
         control={control}
+        defaultValue={E_TaskType.Feature}
+        name='type'
         render={({ field }) => {
-          return ( */}
+          return (
             <Select
-              // value={field.value}
-              // onValueChange={(value: T_TaskFormData['type']) => {
-              //   field.onChange(value);
-              // }}
+              onValueChange={(value: T_TaskFormData['type']) => {
+                field.onChange(value);
+              }}
+              value={field.value}
             >
               <SelectTrigger className='w-full h-11'>
                 <SelectValue placeholder='Select a status...' />
@@ -46,9 +47,9 @@ export const TaskType = () => {
                 </SelectGroup>
               </SelectContent>
             </Select>
-          {/* );
+          );
         }}
-      /> */}
+      />
     </div>
   );
 };

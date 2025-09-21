@@ -12,11 +12,11 @@ export const getTaskOptions = (
   className?: string;
 }[] =>
   [
-    // {
-    //   icon: Edit2,
-    //   label: 'Edit',
-    //   kind: 'edit',
-    // },
+    {
+      icon: Edit2,
+      label: 'Edit',
+      action: (task) => undefined,
+    },
     {
       icon: Copy,
       label: 'Make a Copy',

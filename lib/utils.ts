@@ -23,3 +23,12 @@ export const TaskSchema = z.object({
   taskId: z.number().int().nonnegative(),
   title: z.string().min(3).max(90),
 });
+
+export const TaskFormSchema = TaskSchema.pick({
+  title: true,
+  type: true,
+  priority: true,
+  status: true,
+});
+
+export type T_TaskFormData = z.infer<typeof TaskFormSchema>;
