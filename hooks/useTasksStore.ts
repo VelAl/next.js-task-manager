@@ -2,6 +2,7 @@ import { create } from 'zustand';
 
 import { T_ActionResultStatus, T_Task } from '@/app-types';
 import { tasks } from '@/data-mocked/tasks-data';
+import { generateDigitID, TaskSchema } from '@/lib/utils';
 
 export interface useTasksDataStoreInterface {
   tasks: T_Task[] | null;
@@ -9,6 +10,7 @@ export interface useTasksDataStoreInterface {
 
   setSelectedTask: (task: T_Task | null) => void;
   setTasks: (tasks: T_Task[]) => void;
+  copyTask: (task: T_Task) => T_ActionResultStatus;
   setTaskIsFavorite: (task: T_Task) => T_ActionResultStatus;
   deleteTask: (task: T_Task) => T_ActionResultStatus;
   updateTasks: (
@@ -82,10 +84,30 @@ export const useTasksDataStore = create<useTasksDataStoreInterface>((set) => ({
   },
 
   copyTask: (task: T_Task) => {
+    const validatedTask = TaskSchema.safeParse(task);
 
+    if (!validatedTask.success) {
+      return {
+        toastType: 'error',
+        message: `Invalid task data! ${validatedTask.error.message}`,
+      };
+    }
 
+    const newTask = {
+      ...task,
+      taskId: generateDigitID(),
+      createdAt: new Date().toISOString(),
+    };
+
+    set((state) => ({
+      tasks: state.tasks ? [...state.tasks, newTask] : [newTask],
+    }));
+
+    return {
+      toastType: 'success',
+      message: `Task copied successfully! New Task ID: ${newTask.taskId}`,
+    };
   },
-  
 
   updateTasks: async (
     updatedTasksArray: T_Task[],

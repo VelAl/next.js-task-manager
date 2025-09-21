@@ -17,11 +17,11 @@ export const getTaskOptions = (
     //   label: 'Edit',
     //   kind: 'edit',
     // },
-    // {
-    //   icon: Copy,
-    //   label: 'Make a Copy',
-    //   kind: 'copy',
-    // },
+    {
+      icon: Copy,
+      label: 'Make a Copy',
+      action: useTasksDataStore.getState().copyTask,
+    },
     {
       icon: Star,
       label: `${task.isFavorite ? 'Unmark' : 'Mark'} as Favorite`,
