@@ -1,4 +1,3 @@
-import { ToastT } from 'sonner';
 import { create } from 'zustand';
 
 import { T_ActionResultStatus, T_Task } from '@/app-types';
@@ -11,6 +10,7 @@ export interface useTasksDataStoreInterface {
   setSelectedTask: (task: T_Task | null) => void;
   setTasks: (tasks: T_Task[]) => void;
   setTaskIsFavorite: (task: T_Task) => T_ActionResultStatus;
+  deleteTask: (task: T_Task) => T_ActionResultStatus;
   updateTasks: (
     tasks: T_Task[],
     operation?: string | undefined
@@ -58,6 +58,29 @@ export const useTasksDataStore = create<useTasksDataStoreInterface>((set) => ({
     };
   },
 
+  deleteTask: ({ taskId }: T_Task) => {
+    let toastType: T_ActionResultStatus['toastType'] = 'error';
+    set((state) => {
+      if (!state.tasks) return {};
+
+      const updatedTasks = state.tasks.filter((task) => task.taskId !== taskId);
+
+      if (updatedTasks?.length === state.tasks.length) {
+        return {};
+      }
+      toastType = 'success';
+      return { tasks: updatedTasks || null };
+    });
+
+    return {
+      toastType,
+      message:
+        toastType === 'error'
+          ? `Task with ID ${taskId} not found!`
+          : 'The Task was deleted successfully!',
+    };
+  },
+
   updateTasks: async (
     updatedTasksArray: T_Task[],
     operation: string | undefined
@@ -69,9 +92,6 @@ export const useTasksDataStore = create<useTasksDataStoreInterface>((set) => ({
     switch (operation) {
       case 'copy':
         successMessage = 'Task has been copied successfully!';
-        break;
-      case 'delete':
-        successMessage = 'Task has been deleted successfully!';
         break;
       default:
         successMessage = 'Operation completed successfully!';

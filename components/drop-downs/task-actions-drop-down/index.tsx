@@ -29,7 +29,9 @@ export const TaskActionsDropDown: React.FC<T_Props> = ({ task }) => {
       <DropdownMenuContent className='w-56 poppins'>
         {getTaskOptions(task).map((item) => (
           <DropdownMenuItem
-            className='cursor-pointer'
+            className={`group cursor-pointer transition-colors duration-200 hover:bg-gray-100 ${
+              item.className || ''
+            }`}
             key={item.label}
             onClick={() => {
               const res: T_ActionResultStatus | undefined = item.action?.(task);
@@ -41,7 +43,11 @@ export const TaskActionsDropDown: React.FC<T_Props> = ({ task }) => {
               }
             }}
           >
-            <item.icon className={`mr-2 h-4 w-4`} />
+            <item.icon
+              className={`mr-2 h-4 w-4 transform transition-transform duration-200 group-hover:scale-130 ${
+                item.className || ''
+              }`}
+            />
 
             <span>{item.label}</span>
           </DropdownMenuItem>

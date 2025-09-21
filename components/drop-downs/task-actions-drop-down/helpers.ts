@@ -1,9 +1,16 @@
-import { Copy, Edit2, Star, Trash } from 'lucide-react';
+import { Copy, Edit2, type LucideIcon, Star, Trash } from 'lucide-react';
 
-import { T_Task } from '@/app-types';
+import { T_ActionResultStatus, T_Task } from '@/app-types';
 import { useTasksDataStore } from '@/hooks/useTasksStore';
 
-export const getTaskOptions = (task: T_Task) =>
+export const getTaskOptions = (
+  task: T_Task
+): {
+  icon: LucideIcon;
+  label: string;
+  action: (task: T_Task) => T_ActionResultStatus | undefined;
+  className?: string;
+}[] =>
   [
     // {
     //   icon: Edit2,
@@ -20,9 +27,10 @@ export const getTaskOptions = (task: T_Task) =>
       label: `${task.isFavorite ? 'Unmark' : 'Mark'} as Favorite`,
       action: useTasksDataStore.getState().setTaskIsFavorite,
     },
-    // {
-    //   icon: Trash,
-    //   label: 'Delete',
-    //   kind: 'delete',
-    // },
+    {
+      icon: Trash,
+      label: 'Delete',
+      action: useTasksDataStore.getState().deleteTask,
+      className: 'text-red-500',
+    },
   ] as const;
