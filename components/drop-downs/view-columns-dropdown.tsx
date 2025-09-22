@@ -15,7 +15,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 
-import { hidableColumnsIdsToTitles } from '../task-area/columns';
+import { columnsIdsToTitles } from '../task-area/columns';
 
 export const ViewColumnsDropdown = ({ table }: { table: Table<T_Task> }) => {
   const columnsWithHiding = table
@@ -32,13 +32,13 @@ export const ViewColumnsDropdown = ({ table }: { table: Table<T_Task> }) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button className='h-11 px-8 popppins' variant='outline'>
+        <Button className='h-11 px-8 popppins' variant='default'>
           <BiColumns />
           <span>View</span>
         </Button>
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent className='w-56' >
+      <DropdownMenuContent className='w-56'>
         <DropdownMenuLabel>Toggle Columns</DropdownMenuLabel>
 
         <DropdownMenuSeparator />
@@ -50,8 +50,9 @@ export const ViewColumnsDropdown = ({ table }: { table: Table<T_Task> }) => {
             onCheckedChange={(checked) =>
               handleVisibilityChange(column.id, checked)
             }
+            onSelect={(e) => e.preventDefault()}
           >
-            {hidableColumnsIdsToTitles[column.id] || column.id}
+            {columnsIdsToTitles[column.id] || column.id}
           </DropdownMenuCheckboxItem>
         ))}
       </DropdownMenuContent>

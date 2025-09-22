@@ -15,6 +15,7 @@ import { useTasksDataStore } from '@/hooks/useTasksStore';
 
 import {
   PriorityDropDown,
+  ReorderColumnsDropdown,
   StatusDropDown,
   ViewColumnsDropdown,
 } from '../drop-downs';
@@ -58,7 +59,7 @@ export const TasksArea = () => {
     <div className='px-4 mt-2'>
       <Card>
         <CardHeader>
-          <div className='flex items-center justify-between'>
+          <div className='flex items-center gap-4'>
             <div className='flex items-center gap-2'>
               <SearchInput table={table} />
 
@@ -67,6 +68,10 @@ export const TasksArea = () => {
 
               <ResetFiltersBtn table={table} />
             </div>
+
+            <div className='flex-1' />
+
+            <ReorderColumnsDropdown table={table} />
 
             <ViewColumnsDropdown table={table} />
           </div>

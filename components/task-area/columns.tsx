@@ -157,6 +157,7 @@ export const tasksColumns: ColumnDef<T_Task>[] = [
 
   //_______IS_FAVORITE_STAR______________________________________________
   {
+    id: 'isFavorite',
     accessorKey: 'isFavorite',
     header: '',
     cell: ({ row }) => {
@@ -291,8 +292,11 @@ export const tasksColumns: ColumnDef<T_Task>[] = [
   },
 ];
 
-export const hidableColumnsIdsToTitles: { [id: string]: string } = {
+export const columnsIdsToTitles: { [id: string]: string } = {
+  select: 'Select',
   taskId: 'Task ID',
+  isFavorite: 'Favorite',
+  title: 'Title',
   type: 'Type',
   status: 'Status',
   priority: 'Priority',
