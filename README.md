@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<div align="center">
+	<h1>📝 Task Manager — Training Project</h1>
+	<p>
+		<b>Task manager</b> for practicing with <a href="https://tanstack.com/table/v8">TanStack Table</a> and a modern React stack.
+	</p>
+</div>
 
-## Getting Started
+---
 
-First, run the development server:
+## 📋 Description
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+This project is a training task manager app, created to practice working with <b>TanStack Table</b> (v8) and modern frontend tools. The main goal is to try out the TanStack Table API in real scenarios and implement common table features.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🚀 Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- 🔍 <b>Search</b>
+- 🎯 <b>Filtering</b>
+- ↕️ <b>Sorting</b>
+- 📄 <b>Pagination</b>
+- 👁️ <b>Column visibility management</b>
+- 🟰 <b>Drag & Drop</b> — reorder columns
+- ➕ <b>Create/edit/delete tasks</b>
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🛠️ Technologies
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- <b>Next.js</b> + <b>TypeScript</b>
+- <b>TanStack Table v8</b>
+- <b>React Hook Form</b> + <b>Zod</b> (form validation)
+- <b>shadcn/ui</b> (UI components)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+<div align="center">
+	<b>This project was created for practice and experiments with modern frontend tools!</b>
+</div>
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🖼️ Screenshots
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+![App Screenshot 1](./public/screenshot_1.png)
+![App Screenshot 2](./public/screenshot_2.png)
+![App Screenshot 3](./public/screenshot_3.png)
+![App Screenshot 4](./public/screenshot_4.png)
